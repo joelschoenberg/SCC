@@ -1,0 +1,39 @@
+<table id="box-table-a" width="100%">
+<tr>
+  <th width="18px"></th>
+  <th>Title</th>
+  <th>Severity</th>
+  <th>Date</th>
+</tr>
+<?php
+$count = 0;
+foreach ($this->xml as $item) {
+    if ($count != 5) {
+    switch ($item['desc'][1]) {
+        case 'CRITICAL':
+            $class = 'cancel';
+            break;
+        case 'WARN':
+            $class = 'error';
+            break;
+        default:
+            $class = 'accept';
+            break;
+    }
+
+    $count++;
+    ?>
+<tr style="cursor: pointer" onclick="window.open('<?php echo $item['link'];?>', 
+  'windowname1', 
+  'width=900, height=600, scrollbars=1'); 
+   return false;">
+  <td><span class="ss_sprite ss_<?php echo $class ?>"></span></td>
+  <td><?php echo $item['title'];?></td>
+  <td><?php echo $item['desc'][1] ?></td>
+  <td><?php echo $item['pubDate'] ?></td>
+</tr>
+	<?php
+    }
+}
+?>
+</table>

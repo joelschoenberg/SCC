@@ -1,0 +1,56 @@
+<?php
+switch ($this->state) {
+	case 404 :
+		header ( "HTTP/1.1 404 Not Found" );
+		break;
+	case 500 :
+		header ( "HTTP/1.1 500 Application Error" );
+		break;
+}
+$serverList = array (
+		'ServerA',
+		'ServerB',
+		'ServerC',
+		'ServerD',
+		'ServerE' 
+);
+header ( 'ServerName: ' . $serverList [array_rand ( $serverList )] );
+?>
+<?php echo $this->doctype()?>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="images/favicon.ico">
+<title>Catchpoint - Site Conditions Creator</title>
+    <?php if ($this->escape($this->state) == 'css_error') : ?>
+    <link href="/css/missing.css" media="screen" rel="stylesheet"
+	type="text/css" />
+    <?php endif; ?>
+    <!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/kcpanel.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="container">
+	      <div class="page-header">
+        <h1>Test Condition</h1>
+      </div>
+		<!-- <div class="<?php echo $this->escape($this->state) ?> alert">
+			<div class="main">-->
+		<!-- <p style="font-weight: bold">Hello <?php echo $this->user ?>,</p> -->
+				<?php include ($this->state).'.phtml'?>
+				<br />
+		<!-- 
+			</div>
+		</div>
+		 -->
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

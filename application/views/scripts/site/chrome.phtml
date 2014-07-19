@@ -1,0 +1,20 @@
+<?php
+$browser = $_SERVER['HTTP_USER_AGENT'];
+
+$find = 'Chrome';
+$pos = strpos($browser, $find);
+?>
+
+<?php if ($pos === false) : ?>
+<p>
+This page has a delayed Ajax call in it if the browser is Chrome.  You are currently using    
+</p>
+<strong><?php echo $browser ?></strong>
+<?php else : ?>
+<p>
+You are using Chrome, a delayed Ajax call will happen!
+</p>
+<script type="text/javascript">
+setTimeout("new Ajax.Updater('lorem', '/site/lorem', { method: 'get' })", 4000);
+</script>
+<?php endif; ?>

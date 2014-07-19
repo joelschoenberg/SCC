@@ -1,0 +1,26 @@
+<?php echo $this->doctype() ?>
+
+<html>  
+<head>
+<?php if ($this->escape($this->state) == 'css_error') : ?>
+<link href="/css/missing.css" media="screen" rel="stylesheet" type="text/css" />
+<?php endif; ?>
+<link href="/css/kcpanel.css" media="screen" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/prototype.js"></script>
+<meta http-equiv="Content-Type" content="text/html" />
+<title>Keynote - Site Conditions Creator</title>
+</head>
+<body>
+<div class="<?php echo $this->escape($this->state) ?>">
+	<div>
+		<p style="font-weight:bold">Current Time is <?php echo date('G i s')?></p>
+		<div>
+		<?php include ($this->state).'.phtml' ?>
+		<?php //echo $this->escape($this->content) ?></div>
+		<br />
+		<div id="lorem"></div>
+	</div>
+</div>
+<!-- <?php echo $this->serverUrl() ?> -->
+</body>
+</html>

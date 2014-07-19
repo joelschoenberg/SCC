@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="images/favicon.ico">
+
+    <title>Site Condition Creator - Catchpoint</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/kcpanel.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/dashboard.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="#"><img class="img-responsive" src="images/logo.png" alt=" "></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <?php if (Zend_Auth::getInstance()->hasIdentity()) : ?>
+            <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> <?php echo $this->user ?></a></li>
+			<li><a href="login/logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
+			<?php endif; ?>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+		<?php echo $this->layout()->content ?>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <?php if (Zend_Auth::getInstance()->hasIdentity()) : ?>
+    	<div class="loginBox">
+    		Test URL: <a href="/site/view/owner/<?php echo $this->user ?>" target="_blank"><?php echo $this->serverUrl() ?>/site/view/owner/<?php echo $this->user ?></a>
+    		<div class="frameWrapper">
+			<iframe id="remote-site" seamless sandbox="allow-scripts allow-same-origin"></iframe>
+			</div>
+    	</div>
+    	<?php endif; ?>  
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/kcpanel.js"></script>
+    
+<script type="text/javascript">
+
+var url = generateUrl('<?php echo $this->user ?>');
+/**
+ * Update remote site
+ */
+
+ $.ajax({
+	 url: url,
+	 success: function(data) {
+		 $("#remote-site").contents().find('html').html(data);
+	 }
+ });
+
+</script>
+  </body>
+</html>

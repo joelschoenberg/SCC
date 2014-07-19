@@ -1,0 +1,256 @@
+.navbar-inverse {
+    background-color: #124a7e;
+    /*border-color: #080808*/
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {
+color: #fff;
+background-color: #124a7e;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 200px auto;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="text"] {
+  margin-bottom: 10px;
+  /*
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  */
+}
+
+.frameWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.frameWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+.disable-site {
+	line-height: 25px;
+	background: url(../images/icons/exclamation.png) no-repeat 0;
+	padding: 2px 0 2px 20px;
+}
+
+.css-error {
+	line-height: 25px;
+	background: url(../images/icons/error.png) no-repeat 0;
+	padding: 2px 0 2px 20px;
+}
+
+.enable-site {
+	line-height: 25px;
+	background: url(../images/icons/html_valid.png) no-repeat 0;
+	padding: 2px 0 2px 20px;
+}
+
+.timeout-site {
+	line-height: 25px;
+	background: url(../images/icons/clock_stop.png) no-repeat 0;
+	padding: 2px 0 2px 20px;
+}
+
+.notfound-site {
+	line-height: 25px;
+	background: url(../images/icons/script_error.png) no-repeat 0;
+	padding: 2px 0 2px 20px;
+}
+
+.apperror-site {
+	line-height: 25px;
+	background: url(../images/icons/server_error.png) no-repeat 0;
+	padding: 2px 0 2px 20px;
+}
+
+.delay-site {
+	line-height: 25px;
+	background: url(../images/icons/clock_pause.png) no-repeat 0;
+	padding: 2px 0 2px 20px;
+}
+
+.virtual-page {
+	line-height: 25px;
+	background: url(../images/icons/application_cascade.png) no-repeat 0;
+	padding: 2px 0 2px 20px;
+}
+
+.logout {
+	background: url(../images/icons/cancel.png) no-repeat 0;
+	padding-left: 20px;
+	
+	color: #fff;
+	text-decoration: none;
+}
+
+.error-icon {
+	background: url(../images/icons/cancel.png) no-repeat 5px transparent;
+	padding-left: 25px;
+}
+
+.success-icon {
+	background: url(../images/icons/accept.png) no-repeat 5px transparent;
+	padding-left: 25px;
+}
+
+.notice-icon {
+	background: url(../images/icons/error.png) no-repeat 5px transparent;
+	padding-left: 25px;
+}
+
+.feed {
+	background: url(../images/icons/feed.png) no-repeat;
+	padding-left: 20px;
+	//font: bold 12px Arial;
+	//height: 16px;
+}
+
+.site {
+	background: url(../images/icons/world.png) no-repeat;
+	padding-left: 20px;
+	//font: bold 12px Arial;
+	height: 16px;
+}
+
+.control {
+	background: url(../images/icons/controller.png) no-repeat;
+	padding-left: 20px;
+	//font: bold 12px Arial;
+	height: 16px;
+}
+
+#loading {
+	width: 100px;
+	height: 100px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	background: url(../images/ajax-loader.gif) no-repeat center #fff;
+	text-align: center;
+	padding: 10px;
+	font: normal 16px Tahoma, Geneva, sans-serif;
+	border: 1px solid #666;
+	margin-left: -50px;
+	margin-top: -50px;
+	z-index: 2;
+	overflow: auto;
+}
+
+.hint {
+	font-weight: bold;
+	color: red;
+	line-height: 16px;
+	padding: 0;
+	margin: 0;
+}
+
+/* Box */
+	/* set the image to use and establish the lower-right position */
+.cssbox,.cssbox_body,.cssbox_head,.cssbox_head h2 {
+	background: transparent url(../images/box.png) no-repeat bottom right
+}
+
+.cssbox { /* intended total box width - padding-right(next) */
+	width: 290px !important; /* IE Win = width - padding */
+	width: 275px;
+	/* the gap on the right edge of the image (not content padding) */
+	padding-right: 15px; /* use to position the box */
+	margin: 20px auto
+}  /* set the top-right image */
+.cssbox_head {
+	background-position: top right;
+	/* pull the right image over on top of border */
+	margin-right: -15px; /* right-image-gap + right-inside padding */
+	padding-right: 40px
+}  /* set the top-left image */
+.cssbox_head h2 {
+	background-position: top left;
+	margin: 0; /* reset main site styles*/
+	border: 0; /* ditto */
+	/* padding-left = image gap + interior padding ... no padding-right */
+	padding: 3px 0 15px 10px;
+	height: auto !important;
+	height: 1%
+}  /* IE Holly Hack */ /* set the lower-left corner image */
+.cssbox_body {
+	background-position: bottom left;
+	margin-right: 25px; /* interior-padding right */
+	padding: 15px 0 15px 40px
+}  /* mirror .cssbox_head right/left */
+.delay,.validation_error,.css_error,.default {
+	padding: .8em;
+	margin-bottom: 1em;
+	border: 2px solid #ddd;
+}
+
+.validation_error {
+	background: #FBE3E4;
+	color: #8a1f11;
+	border-color: #FBC2C4;
+}
+
+.css_error,.delay {
+	background: #FFF6BF;
+	color: #514721;
+	border-color: #FFD324;
+}
+
+.default {
+	background: #E6EFC2;
+	color: #264409;
+	border-color: #C6D880;
+}
+
+/* ------------------
+ styling for the tables 
+   ------------------   */
+#box-table-a {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 11px;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+#box-table-a th {
+	font-size: 13px;
+	font-weight: normal;
+	padding: 4px;
+	background: #bbb;
+	border-top: 4px solid #aaa;
+	border-bottom: 1px solid #fff;
+	color: #333;
+}
+
+#box-table-a td {
+	padding: 4px;
+	background: #eee;
+	border-bottom: 1px solid #fff;
+	color: #669;
+	border-top: 1px solid transparent;
+}
+
+#box-table-a tr:hover td {
+	background: #d0dafd;
+	color: #339;
+}
