@@ -2,5 +2,5 @@
 --
 -- You can begin populating the database with the following SQL statements.
 
-INSERT INTO kcpanel (user, state) VALUES
+INSERT INTO scc (user, state) VALUES
     ('admin', 'default');
