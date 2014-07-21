@@ -1,20 +1,31 @@
 <?php
-$browser = $_SERVER['HTTP_USER_AGENT'];
-
+$browser = $_SERVER ['HTTP_USER_AGENT'];
 $find = 'Chrome';
-$pos = strpos($browser, $find);
+$pos = strpos ( $browser, $find );
 ?>
 
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">Chrome</h3>
+	</div>
+	<div class="panel-body">
 <?php if ($pos === false) : ?>
-<p>
-This page has a delayed Ajax call in it if the browser is Chrome.  You are currently using    
-</p>
-<strong><?php echo $browser ?></strong>
+<p>This page has a delayed Ajax call in it of 4 seconds if the browser
+			is Chrome. You are currently using</p>
+		<strong><?php echo $browser ?></strong>
 <?php else : ?>
-<p>
-You are using Chrome, a delayed Ajax call will happen!
-</p>
+<p>You are using Chrome, a delayed Ajax call will happen!</p>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Lorem Ipsum</h3>
+	</div>
+	<div class="panel-body" id="lorem"></div>
+</div>
+
 <script type="text/javascript">
-setTimeout("new Ajax.Updater('lorem', '/site/lorem', { method: 'get' })", 4000);
+setTimeout("jQuery.ajax({ url: '/site/lorem', success: function(data) { jQuery('#lorem').html(data);}});", 4000);
 </script>
 <?php endif; ?>
