@@ -1,6 +1,24 @@
 <?php
 class SiteController extends Zend_Controller_Action
 {
+	
+	protected $_startTime;
+	protected $_endTime;
+	protected $_totalTime;
+	
+	public function preDispatch()
+	{
+		parent::preDispatch();
+		$this->_startTime = microtime(true);
+	}
+	
+	public function postDispatch()
+	{
+		parent::postDispatch();
+		$this->_endTime = microtime(true);
+		$this->_totalTime = $this->_endTime - $this->_startTime;
+		$this->view->totalTime = number_format($this->_totalTime, 4);
+	}
 
     public function init()
     {
