@@ -1,6 +1,16 @@
-<div class="panel panel-primary">
-	<div class="panel-heading">
-	<h3 class="panel-title">Default</h3>
-	</div>
-	<div class="panel-body"><p><?php echo $this->nodes?></p></div>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Nodes Result
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body" style="max-height: 420px;overflow-y:auto;">
+        <?php echo $this->nodes?>
+      </div>
+    </div>
+  </div>
 </div>
