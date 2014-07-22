@@ -3,6 +3,8 @@ class Application_Model_Site {
 	protected $_id;
 	protected $_user;
 	protected $_state;
+	protected $_key;
+	protected $_secret;
 	public function __construct(array $options = null) {
 		if (is_array ( $options )) {
 			$this->setOptions ( $options );
@@ -52,5 +54,19 @@ class Application_Model_Site {
 	}
 	public function getId() {
 		return $this->_id;
+	}
+	public function setKey($ts) {
+		$this->_key = $ts;
+		return $this;
+	}
+	public function getKey() {
+		return $this->_key;
+	}
+	public function setSecret($ts) {
+		$this->_secret = $ts;
+		return $this;
+	}
+	public function getSecret() {
+		return $this->_secret;
 	}
 }

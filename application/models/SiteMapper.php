@@ -35,6 +35,18 @@ class Application_Model_SiteMapper {
 				'user = ?' => $site->getUser () 
 		) );
 	}
+	
+	public function settings(Application_Model_Site $site) {
+		$data = array (
+				'user' => $site->getUser (),
+				'key' => $site->getKey (),
+				'secret' => $site->getSecret ()
+		);
+	
+		$this->getDbTable ()->update ( $data, array (
+				'user = ?' => $site->getUser ()
+		) );
+	}
 	public function fetchAll($user) {
 		$query = $this->getDbTable ()->select ()->where ( 'user = ?', $user );
 		$resultSet = $this->getDbTable ()->fetchRow ( $query );
