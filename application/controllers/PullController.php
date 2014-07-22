@@ -14,26 +14,34 @@ class PullController extends Zend_Controller_Action {
 		}
 	}
 	public function init() {
+		$this->session = new Zend_Session_Namespace ( 'Catchpoint' );
+		
 		$this->_user = Zend_Auth::getInstance ()->getIdentity ();
 		$this->view->user = $this->_user;
 		
 		$this->_helper->layout->setLayout ( 'basic' );
 		
-		//$this->_helper->layout->disableLayout ();
-		//$this->_helper->viewRenderer->setNoRender ( true );
+		$site = new Application_Model_SiteMapper ();
 		
-		$this->session = new Zend_Session_Namespace ( 'Catchpoint' );
+		$result = $site->fetchAll ( $this->_user );
 		
-		if (! isset ( $this->session->token )) {
-			$this->getToken ();
-			$this->session->token = base64_encode ( $this->_token );
-			$this->session->setExpirationSeconds ( $this->_expires );
+		if ($result->key == null) {
+			$this->view->settings = 'please enter your key';
+		} else {
+			
+			$this->_key = $result->key;
+			$this->_secret = $result->secret;
+			
+			if (! isset ( $this->session->token )) {
+				$this->getToken ();
+				$this->session->token = base64_encode ( $this->_token );
+				$this->session->setExpirationSeconds ( $this->_expires );
+			}
 		}
+		
 	}
-	
 	public function indexAction() {
 	}
-	
 	private function getToken() {
 		$ch = curl_init ();
 		
@@ -59,13 +67,11 @@ class PullController extends Zend_Controller_Action {
 				'Authorization: Bearer ' . $this->session->token 
 		) );
 		curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-		$nodes = json_decode(curl_exec ( $ch ));
+		$nodes = curl_exec ( $ch ) ;
 		
 		curl_close ( $ch );
-		
-		//$this->view->$nodes = $nodes;
-		echo '<pre>';
-		print_r($nodes);
+		$this->view->nodes = $nodes;
 	}
+
 }
 
