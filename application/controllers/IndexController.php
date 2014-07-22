@@ -14,7 +14,6 @@ class IndexController extends Zend_Controller_Action {
 	}
 	public function setAction() {
 		$state = $this->_getParam ( 'state' );
-		$user = 'dummy';
 		
 		$this->_helper->layout->disableLayout ();
 		$this->_helper->viewRenderer->setNoRender ( true );
