@@ -9,15 +9,13 @@ class PullController extends Zend_Controller_Action
 
     protected $_url = 'https://ioqa.catchpoint.com/HawkUI/api/v1/';
 
-    protected $_key = 'F0-C-jQ6Ni_.BAi1';
+    protected $_key;
 
-    protected $_secret = 'ded28672-81f5-4877-884c-ad1ffc7e8530';
+    protected $_secret;
 
     protected $_token;
 
     protected $_expires;
-
-    public $session;
 
     public function preDispatch ()
     {
@@ -68,7 +66,6 @@ class PullController extends Zend_Controller_Action
                 'grant_type=client_credentials&client_id=' . $this->_key .
                          '&client_secret=' . $this->_secret);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt ( $ch, CURLOPT_VERBOSE, true );
         
         $result = curl_exec($ch);
         
@@ -95,9 +92,7 @@ class PullController extends Zend_Controller_Action
         curl_close($ch);
         echo '<pre>';
         print_r($nodes);
-        // foreach ($nodes->items as $k => $v) {
-        // $this->view->name = array($v);
-        // }
+        echo '</pre>';
     }
 }
 
