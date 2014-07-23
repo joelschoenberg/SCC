@@ -1,78 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="images/favicon.ico">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="images/favicon.ico">
 
-    <title>Site Condition Creator - Catchpoint</title>
+<title>Site Condition Creator - Catchpoint</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/scc.css" rel="stylesheet">
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/scc.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="/css/dashboard.css" rel="stylesheet">
-  </head>
+<!-- Custom styles for this template -->
+<link href="/css/dashboard.css" rel="stylesheet">
+</head>
 
-  <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a href="/"><img class="img-responsive" src="/images/logo.png" alt="Home"></a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <?php if (Zend_Auth::getInstance()->hasIdentity()) : ?>
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> <?php echo $this->user ?></a></li>
-			<li><a href="login/logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
-			<?php endif; ?>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-		<?php echo $this->layout()->content ?>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <?php if (Zend_Auth::getInstance()->hasIdentity()) : ?>
-    		Test URL: <a href="/site/view/owner/<?php echo $this->user ?>" target="_blank"><?php echo $this->serverUrl() ?>/site/view/owner/<?php echo $this->user ?></a>
-    		<div class="frameWrapper">
-			<iframe id="remote-site" seamless sandbox="allow-scripts allow-same-origin"></iframe>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a href="/"><img class="img-responsive" src="/images/logo.png" alt="Home"></a>
 			</div>
-    	<?php endif; ?>  
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/">Home</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Nav header</li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown active"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>  <?php echo $this->user ?> <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#" data-toggle="modal" data-target="#myModal"><span
+							class="glyphicon glyphicon-cog"></span>  Settings</a></li>
+							<li class="divider"></li>
+							<li><a href="/login/logout"><span class="glyphicon glyphicon-log-out"></span>  Logout</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li><a href="/index/state/type/validation_error"><span class="glyphicon glyphicon-warning-sign"></span> Validation Error</a></li>
+					<li><a href="/index/state/type/css_error"><span class="glyphicon glyphicon-warning-sign"></span> CSS Error</a></li>
+					<li><a href="/index/state/type/timeout"><span class="glyphicon glyphicon-time"></span> Timeout Error</a></li>
+					<li><a href="/index/state/type/404"><span class="glyphicon glyphicon-exclamation-sign"></span> #404 Error</a></li>
+					<li><a href="/index/state/type/500"><span class="glyphicon glyphicon-ban-circle"></span> #500 Error</a></li>
+				</ul>
+				<ul class="nav nav-sidebar">
+					<li><a href="/index/state/type/delay"><span class="glyphicon glyphicon-pause"></span> Content delay</a></li>
+					<li><a href="/index/state/type/hosts_and_zones"><span class="glyphicon glyphicon-filter"></span> Hosts &amp; Zones</a></li>
+				</ul>
+				<ul class="nav nav-sidebar">
+					<li><a href="/index/state/type/chrome"><span class="glyphicon glyphicon-globe"></span> Chrome</a></li>
+					<li><a href="/index/state/type/glimpse"><span class="glyphicon glyphicon-user"></span> Glimpse</a></li>
+				</ul>
+				<ul class="nav nav-sidebar">
+					<li><a href="/index/state/type/default"><span class="glyphicon glyphicon-flash"></span> Reset Site</a></li>
+				</ul>
+
+				<ul class="nav nav-sidebar">
+					<li><a href="/pull"><span class="glyphicon glyphicon-cloud-download"></span> Pull API</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">Test URL</h3>
+					</div>
+					<div class="panel-body">
+						<p>
+							<a href="/site/view/owner/<?php echo $this->user ?>" target="_blank"><?php echo $this->serverUrl() ?>/site/view/owner/<?php echo $this->user ?></a>
+						</p>
+					</div>
+				</div>
+                <?php echo $this->layout()->content?>
         </div>
-      </div>
-    </div>
-
-    <!-- Bootstrap core JavaScript
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="/settings/save" method="POST" role="form" id="settings">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">Pull API Settings</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="key">Key</label>
+							<input type="text" class="form-control" name="key" placeholder="Key">
+						</div>
+						<div class="form-group">
+							<label for="secret">Secret</label>
+							<input type="password" class="form-control" name="secret" placeholder="Secret">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save changes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/scc.js"></script>
-    
-<script type="text/javascript">
-
-var url = generateUrl('<?php echo $this->user ?>');
-/**
- * Update remote site
- */
-
- $.ajax({
-	 url: url,
-	 success: function(data) {
-		 $("#remote-site").contents().find('html').html(data);
-	 }
- });
-
-</script>
-  </body>
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+</body>
 </html>

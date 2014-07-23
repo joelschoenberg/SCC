@@ -59,6 +59,10 @@ class PullController extends Zend_Controller_Action
 
     private function getToken ()
     {
+        
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+        
         $ch = curl_init();
         echo $this->_url . 'token';
         curl_setopt($ch, CURLOPT_URL, $this->_tokenUrl . 'token');
