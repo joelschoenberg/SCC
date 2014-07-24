@@ -62,5 +62,9 @@ function RProfiler(){} (function(){var restUrl ="cpqa.catchpoint.com/jp/v2/M"; v
     </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+	<?php if ($this->escape($this->state) == 'js_error') :?>
+    <script src="/js/js_error.js"></script>
+    <script src="/js/jsAjax_error.js"></script>
+    <?php endif; ?>
 </body>
 </html>

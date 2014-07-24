@@ -60,6 +60,7 @@
 				<ul class="nav nav-sidebar">
 					<li><a href="/index/state/type/validation_error"><span class="glyphicon glyphicon-warning-sign"></span> Validation Error</a></li>
 					<li><a href="/index/state/type/css_error"><span class="glyphicon glyphicon-warning-sign"></span> CSS Error</a></li>
+					<li><a href="/index/state/type/js_error"><span class="glyphicon glyphicon-warning-sign"></span> JavaScript Error</a></li>					
 					<li><a href="/index/state/type/timeout"><span class="glyphicon glyphicon-time"></span> Timeout Error</a></li>
 					<li><a href="/index/state/type/404"><span class="glyphicon glyphicon-exclamation-sign"></span> #404 Error</a></li>
 					<li><a href="/index/state/type/500"><span class="glyphicon glyphicon-ban-circle"></span> #500 Error</a></li>
@@ -119,6 +120,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						<button type="submit" class="btn btn-primary">Save changes</button>
+						<input type="hidden" name="returnUrl" value="<?php echo Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();?>">
 					</div>
 				</form>
 			</div>
