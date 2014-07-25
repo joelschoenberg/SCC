@@ -1,1 +1,3 @@
-throw new Error("Catchpoint JavaScript Error 2");
+var b = c + a;
+
+myFunction();
