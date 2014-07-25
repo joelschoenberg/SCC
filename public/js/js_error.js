@@ -1,4 +1,4 @@
-throw "Catchpoint JavaScript Error 1";
+new Error("Catchpoint JavaScript Error 1");
 a = 100;
 
 b = 100;

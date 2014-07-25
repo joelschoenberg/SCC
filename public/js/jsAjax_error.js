@@ -1,4 +1,4 @@
-throw "Catchpoint JavaScript Error 2";
+new Error("Catchpoint JavaScript Error 2");
 
 function testAjax() {
 	jQuery.ajax({
