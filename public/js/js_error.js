@@ -1,11 +1,3 @@
-new Error("Catchpoint JavaScript Error 1");
-a = 100;
+throw new Error("Catchpoint JavaScript Error 1");
 
-b = 100;
-
-c = 100;
-
-d = a + b + c;
-
-jQuery('.panel-body')[1].val(d);
 
