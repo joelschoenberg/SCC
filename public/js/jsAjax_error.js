@@ -1,3 +1,5 @@
+throw "Catchpoint JavaScript Error 2";
+
 function testAjax() {
 	jQuery.ajax({
 		url: setState,
