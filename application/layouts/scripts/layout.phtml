@@ -101,7 +101,7 @@
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="/settings/save" method="POST" role="form" id="settings">
+				<form  method="POST" role="form" id="settings">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
@@ -111,16 +111,16 @@
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="key">Key</label>
-							<input type="text" class="form-control" name="key" placeholder="Key">
+							<input type="text" class="form-control" name="key" placeholder="<?php echo $this->key ?>" value="<?php echo $this->key ?>">
 						</div>
 						<div class="form-group">
 							<label for="secret">Secret</label>
-							<input type="password" class="form-control" name="secret" placeholder="Secret">
+							<input type="text" class="form-control" name="secret" placeholder="<?php echo $this->secret ?>" value="<?php echo $this->secret ?>">
 						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Save changes</button>
+						<button type="submit" class="btn btn-primary" id="submit">Save changes</button>
 						<input type="hidden" name="returnUrl" value="<?php echo Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();?>">
 					</div>
 				</form>
@@ -132,5 +132,16 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
+	<script>
+    $(function() {
+        $("button#submit").click(function(){
+            $.ajax({
+                type: "POST",
+                url: "http://scc.local/settings/save",
+                data: $("form#settings").serialize()
+            });
+        });
+    });
+	</script>
 </body>
 </html>
