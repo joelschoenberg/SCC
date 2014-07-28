@@ -28,7 +28,7 @@ class SettingsController extends Zend_Controller_Action
 
     public function saveAction ()
     {
-        $site = new Application_Model_Site(
+        $settings = new Application_Model_Site(
                 array(
                         'user' => $this->_user,
                         'key' => $this->_getParam('key'),
@@ -37,8 +37,9 @@ class SettingsController extends Zend_Controller_Action
         
         $mapper = new Application_Model_SiteMapper();
         
-        $mapper->settings($site);
-        $this->_helper->redirector('index', 'pull');
+        $mapper->settings($settings);
     }
 }
+
+
 
