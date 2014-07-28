@@ -73,6 +73,7 @@ class LoginController extends Zend_Controller_Action
     public function logoutAction ()
     {
         Zend_Auth::getInstance()->clearIdentity();
+        Zend_Session::namespaceUnset('Catchpoint');
         $this->_helper->redirector('index'); // back to login page
     }
 }
