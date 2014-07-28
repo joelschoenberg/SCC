@@ -17,6 +17,8 @@ class PullController extends Zend_Controller_Action
 
     protected $_expires;
 
+    protected $_session;
+
     public function preDispatch ()
     {
         if (! Zend_Auth::getInstance()->hasIdentity()) {
@@ -28,28 +30,25 @@ class PullController extends Zend_Controller_Action
 
     public function init ()
     {
-        $this->session = new Zend_Session_Namespace('Catchpoint');
+        $this->_helper->layout->setLayout('basic');
+        
+        $this->_session = new Zend_Session_Namespace('Catchpoint');
         
         $this->_user = Zend_Auth::getInstance()->getIdentity();
         $this->view->user = $this->_user;
+        $user = new Application_Model_SiteMapper();
         
-        $this->_helper->layout->setLayout('basic');
-        
-        $site = new Application_Model_SiteMapper();
-        
-        $result = $site->fetchAll($this->_user);
+        $result = $user->fetchAll($this->_user);
         
         if ($result->key == null) {
-            $this->view->settings = 'please enter your key';
+            throw new Exception('No Key/Secret set!');
         } else {
             
             $this->_key = $result->key;
             $this->_secret = $result->secret;
             
-            if (! isset($this->session->token)) {
+            if (! isset($this->_session->token) || $this->_session->token == '') {
                 $this->getToken();
-                $this->session->token = base64_encode($this->_token);
-                $this->session->setExpirationSeconds($this->_expires);
             }
         }
     }
@@ -59,42 +58,50 @@ class PullController extends Zend_Controller_Action
 
     private function getToken ()
     {
-        
-        $this->_helper->layout->disableLayout();
-        $this->_helper->viewRenderer->setNoRender(true);
-        
         $ch = curl_init();
-        echo $this->_url . 'token';
         curl_setopt($ch, CURLOPT_URL, $this->_tokenUrl . 'token');
         curl_setopt($ch, CURLOPT_POSTFIELDS, 
                 'grant_type=client_credentials&client_id=' . $this->_key .
                          '&client_secret=' . $this->_secret);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_STDERR, fopen('php://output', 'w+'));
+        // curl_setopt($ch, CURLOPT_VERBOSE, 1);
         
         $result = curl_exec($ch);
         
         curl_close($ch);
         
         $jsonResponse = json_decode($result);
-        
-        $this->_token = $jsonResponse->access_token;
-        $this->_expires = $jsonResponse->expires_in;
+        if ($jsonResponse->Message) {
+            throw new Exception($jsonResponse->Message);
+        } else {
+            $this->_token = $jsonResponse->access_token;
+            $this->_expires = $jsonResponse->expires_in;
+            $this->_session->token = base64_encode($this->_token);
+            $this->_session->setExpirationSeconds($this->_expires);
+        }
     }
 
     public function apiAction ()
     {
+        echo '<pre>';
         $request = $this->_getParam('call');
         $ch = curl_init();
         
+        echo $this->_url . $request;
         curl_setopt($ch, CURLOPT_URL, $this->_url . $request);
         curl_setopt($ch, CURLOPT_HTTPHEADER, 
                 array(
-                        'Authorization: Bearer ' . $this->session->token
+                        'Authorization: Bearer ' . $this->_session->token
                 ));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $nodes = json_decode(curl_exec($ch));
+        // curl_setopt($ch, CURLOPT_STDERR, fopen('php://output', 'w+'));
+        // curl_setopt($ch, CURLOPT_VERBOSE, 1);
+        
+        $result = curl_exec($ch);
+        $nodes = json_decode($result);
         curl_close($ch);
-        echo '<pre>';
+        
         print_r($nodes);
         echo '</pre>';
     }
