@@ -27,6 +27,8 @@ class IndexController extends Zend_Controller_Action
         
         $this->view->user = $result->user;
         $this->_state = $result->state;
+        $this->view->key = (empty($result->key)) ? 'Key' : $result->key;
+        $this->view->secret = (empty($result->secret)) ? 'Secret' : $result->secret;
     }
 
     public function setAction ()
