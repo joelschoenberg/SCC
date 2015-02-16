@@ -88,7 +88,7 @@ class PullController extends Zend_Controller_Action
         $request = $this->_getParam('call');
         $ch = curl_init();
         
-        echo $this->_url . $request;
+        echo $this->_url . $request . "\r\n";
         curl_setopt($ch, CURLOPT_URL, $this->_url . $request);
         curl_setopt($ch, CURLOPT_HTTPHEADER, 
                 array(
