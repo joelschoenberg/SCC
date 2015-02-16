@@ -52,7 +52,6 @@ class Application_Model_SiteMapper
     {
         $data = array(
                 'user' => $site->getUser(),
-                'state' => $site->getState(),
                 'key' => $site->getKey(),
                 'secret' => $site->getSecret()
         );
