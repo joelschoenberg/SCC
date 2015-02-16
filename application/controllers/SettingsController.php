@@ -39,7 +39,7 @@ class SettingsController extends Zend_Controller_Action
         
         $mapper->settings($settings);
         
-        $this->_helper->redirector('index');
+        $this->_helper->redirector('index', 'index');
     }
 }
 
