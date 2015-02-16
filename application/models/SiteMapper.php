@@ -56,6 +56,7 @@ class Application_Model_SiteMapper
                 'secret' => $site->getSecret()
         );
         
+        print_r ($data);
         $this->getDbTable()->update($data, 
                 array(
                         'user = ?' => $site->getUser()
