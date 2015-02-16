@@ -34,7 +34,7 @@ class SettingsController extends Zend_Controller_Action
                         'key' => $this->_getParam('key'),
                         'secret' => $this->_getParam('secret')
                 ));
-        print_r($settings);
+        
         $mapper = new Application_Model_SiteMapper();
         
         $mapper->settings($settings);

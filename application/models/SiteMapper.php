@@ -52,12 +52,12 @@ class Application_Model_SiteMapper
     {
         $data = array(
                 'user' => $site->getUser(),
+                'state' => $site->getState(),
                 'key' => $site->getKey(),
                 'secret' => $site->getSecret()
         );
         
-        print_r ($data);
-        return $this->getDbTable()->update($data, 
+        $this->getDbTable()->update($data, 
                 array(
                         'user = ?' => $site->getUser()
                 ));
