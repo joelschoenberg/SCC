@@ -38,6 +38,8 @@ class SettingsController extends Zend_Controller_Action
         $mapper = new Application_Model_SiteMapper();
         
         $mapper->settings($settings);
+        
+        $this->_helper->redirector('index');
     }
 }
 
