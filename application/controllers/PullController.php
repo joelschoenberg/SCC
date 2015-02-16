@@ -5,9 +5,9 @@ class PullController extends Zend_Controller_Action
 
     protected $_user;
 
-    protected $_tokenUrl = 'https://ioqa.catchpoint.com/HawkUI/api/';
+    protected $_tokenUrl = 'https://io.catchpoint.com/ui/api/';
 
-    protected $_url = 'https://ioqa.catchpoint.com/HawkUI/api/v1/';
+    protected $_url = 'https://io.catchpoint.com/ui/api/v1/';
 
     protected $_key;
 
