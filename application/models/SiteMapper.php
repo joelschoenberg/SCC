@@ -57,7 +57,7 @@ class Application_Model_SiteMapper
         );
         
         print_r ($data);
-        $this->getDbTable()->update($data, 
+        return $this->getDbTable()->update($data, 
                 array(
                         'user = ?' => $site->getUser()
                 ));
