@@ -39,9 +39,12 @@ class SiteController extends Zend_Controller_Action
         $site = new Application_Model_SiteMapper();
         
         $result = $site->fetchAll($user);
-        
-        $this->view->user = $result->user;
-        $this->view->state = $result->state;
+       
+        $this->view->user = $result['user'];
+        $this->view->state = $result['state'];
+
+        //$this->_helper->viewRenderer->setNoRender(true);
+        //$this->renderScript('site/' . $this->view->state . '.phtml');
     }
 
     public function loremAction ()
