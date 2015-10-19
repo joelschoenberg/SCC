@@ -204,7 +204,7 @@ class BenchmarkController extends Zend_Controller_Action
 
           $mapper = new Application_Model_BenchmarkChartsMapper();
 
-          $mapper->save($site);
+          $mapper->save($chart);
           sleep(5);
         }
 
