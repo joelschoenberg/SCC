@@ -15,6 +15,7 @@ class BenchmarkController extends Zend_Controller_Action
 
     public function init()
     {
+        date_default_timezone_set('UTC');
         $this->_user = Zend_Auth::getInstance()->getIdentity();
         $this->view->user = $this->_user;
         $this->_helper->layout->setLayout('benchmark');
@@ -51,6 +52,7 @@ class BenchmarkController extends Zend_Controller_Action
                 array(
                         'cid' => $this->_getParam('id'),
                         'name' => $this->_getParam('name'),
+                        'modified' => date('Y-m-d H:i:s')
                 ));
 
         $mapper = new Application_Model_BenchmarkChartsMapper();
@@ -191,13 +193,25 @@ class BenchmarkController extends Zend_Controller_Action
 
         foreach ($result as $r) {
           $myArray[] = $t->fetchData('performance/favoriteCharts/'.$r->cid.'/data');
+
+          $site = new Application_Model_BenchmarkCharts(
+                  array(
+                          'id' => $r->id,
+                          'cid' => $r->cid,
+                          'name' => $r->name,
+                          'modified' => date('Y-m-d H:i:s')
+                  ));
+
+          $mapper = new Application_Model_BenchmarkChartsMapper();
+
+          $mapper->save($site);
           sleep(5);
         }
 
         $tests = array();
         foreach ($myArray as $m) {
             foreach ($m->summary->items as $a) {
-                $tests[] = array(
+              $tests[] = array(
               'id' => $chart->cid,
               'name' => $a->breakdown_1->name,
               'dns' => round($a->synthetic_metrics[0] / 1000, 3),

@@ -8,6 +8,8 @@ class Application_Model_BenchmarkCharts
 
     protected $_name;
 
+    protected $_modified;
+
     public function __construct(array $options = null)
     {
         if (is_array($options)) {
@@ -81,5 +83,17 @@ class Application_Model_BenchmarkCharts
     public function getName()
     {
         return $this->_name;
+    }
+
+    public function setModified($date)
+    {
+        $this->_modified = (string) $date;
+
+        return $this;
+    }
+
+    public function getModified()
+    {
+        return $this->_modified;
     }
 }

@@ -31,6 +31,7 @@ class Application_Model_BenchmarkChartsMapper
         $data = array(
                 'cid' => $chart->getCid(),
                 'name' => $chart->getName(),
+                'modified' => $chart->getModified()
         );
 
         if (null === ($id = $chart->getId())) {
@@ -50,7 +51,8 @@ class Application_Model_BenchmarkChartsMapper
         $row = $result->current();
         $chart->setId($row->id)
                   ->setCid($row->cid)
-                  ->setName($row->name);
+                  ->setName($row->name)
+                  -setDate($row->modified);
     }
 
     public function fetchAll()
@@ -61,7 +63,8 @@ class Application_Model_BenchmarkChartsMapper
             $chart = new Application_Model_BenchmarkCharts();
             $chart->setId($row->id)
                 ->setCid($row->cid)
-                ->setName($row->name);
+                ->setName($row->name)
+                ->setModified($row->modified);
             $charts[] = $chart;
         }
 
