@@ -95,7 +95,10 @@ class Catchpoint_Pull
 
         $jsonResponse = json_decode($result);
 
-        echo("<script>console.log('Token: ".base64_encode($jsonResponse->access_token)."');</script>");
+        if (isset(jsonResponse->Message)) {
+          throw new Exception(jsonResponse->Message);
+        }
+        //echo("<script>console.log('Token: ".base64_encode($jsonResponse->access_token)."');</script>");
 
         return base64_encode($jsonResponse->access_token);
     }
