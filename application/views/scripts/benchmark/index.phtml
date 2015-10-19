@@ -1,0 +1,17 @@
+<div class="jumbotron">
+      <div class="container">
+        <p>Enter a Test ID and confirm your API Key &amp; Secret is correct</p>
+      </div>
+    </div>
+
+<form role="form" action="/benchmark/test" method="POST">
+  <div class="form-group">
+    <label >Enter a Test ID</label>
+    <input type="text" class="form-control" id="testid" name="testid" placeholder="# Chart ID">
+    <label >API Key</label>
+    <input type="text" class="form-control" id="key" name="key" placeholder="<?php echo $this->key ?>" disabled>
+    <label >API Secret</label>
+    <input type="text" class="form-control" id="secret" name="secret" placeholder="<?php echo $this->secret ?>" disabled>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>

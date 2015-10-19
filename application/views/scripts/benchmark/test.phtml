@@ -1,0 +1,18 @@
+<div class="jumbotron">
+      <div class="container">
+        <p>Select your benchmark</p>
+      </div>
+    </div>
+<div class="row">
+<?php foreach ($this->current as $c): ?>
+  <div class="col-sm-2 col-xs-4">
+    <div class="thumbnail">
+      <img src="/images/cp_logo_100x100.png">
+      <div class="caption">
+      <h4><?php echo $c->name ?></h4>
+      <p><a href="/benchmark/view/cid/<?php echo $c->cid ?>" class="btn btn-primary" role="button" target="_blank">Create Report</a>
+    </div>
+      </div>
+  </div>
+<?php endforeach; ?>
+</div>
