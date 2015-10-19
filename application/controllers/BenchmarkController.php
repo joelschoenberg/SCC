@@ -133,6 +133,11 @@ class BenchmarkController extends Zend_Controller_Action
         }
         $this->session = new Zend_Session_Namespace('Catchpoint');
         $this->session->userChart = $tests[0];
+        $this->session->userDetails = array(
+          $this->_getParam('name'),
+          $this->_getParam('job_title'),
+          $this->_getParam('contact_number')
+        );
 
         $this->view->testDetails = $tests[0];
       //$testData = $t->fetchData($request);
@@ -173,6 +178,11 @@ class BenchmarkController extends Zend_Controller_Action
         $this->view->uwr = $this->session->userChart['webpage_response'];
         $this->view->ubytes = $this->session->userChart['bytes'];
         $this->view->uitems = $this->session->userChart['items'];
+
+        $this->view->creator = $this->session->userDetails[0];
+        $this->view->jobTitle = $this->session->userDetails[1];
+        $this->view->contactNumber = $this->session->userDetails[2];
+
     }
 
     public function addAction()
