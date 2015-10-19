@@ -194,7 +194,7 @@ class BenchmarkController extends Zend_Controller_Action
         foreach ($result as $r) {
           $myArray[] = $t->fetchData('performance/favoriteCharts/'.$r->cid.'/data');
 
-          $site = new Application_Model_BenchmarkCharts(
+          $chart = new Application_Model_BenchmarkCharts(
                   array(
                           'id' => $r->id,
                           'cid' => $r->cid,
