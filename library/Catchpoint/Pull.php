@@ -58,7 +58,7 @@ class Catchpoint_Pull
 
         $data = json_decode($result);
 
-        if ($data->Message) {
+        if (isset($data->Message)) {
             throw new Exception($data->Message);
         }
 
