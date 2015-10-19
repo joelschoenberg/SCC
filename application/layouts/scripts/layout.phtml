@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" href="images/favicon.ico">
+<link rel="icon" href="/images/favicon.ico">
 
 <title>Site Condition Creator - Catchpoint</title>
 
@@ -30,6 +30,7 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="/">Home</a></li>
+					<!--
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#">Action</a></li>
@@ -39,7 +40,9 @@
 							<li class="dropdown-header">Nav header</li>
 							<li><a href="#">Separated link</a></li>
 							<li><a href="#">One more separated link</a></li>
-						</ul></li>
+						</ul>
+					</li>
+				  -->
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown active"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>  <?php echo $this->user ?> <b class="caret"></b></a>
@@ -60,7 +63,7 @@
 				<ul class="nav nav-sidebar">
 					<li><a href="/index/state/type/validation_error"><span class="glyphicon glyphicon-warning-sign"></span> Validation Error</a></li>
 					<li><a href="/index/state/type/css_error"><span class="glyphicon glyphicon-warning-sign"></span> CSS Error</a></li>
-					<li><a href="/index/state/type/js_error"><span class="glyphicon glyphicon-warning-sign"></span> JavaScript Error</a></li>					
+					<li><a href="/index/state/type/js_error"><span class="glyphicon glyphicon-warning-sign"></span> JavaScript Error</a></li>
 					<li><a href="/index/state/type/timeout"><span class="glyphicon glyphicon-time"></span> Timeout Error</a></li>
 					<li><a href="/index/state/type/404"><span class="glyphicon glyphicon-exclamation-sign"></span> #404 Error</a></li>
 					<li><a href="/index/state/type/500"><span class="glyphicon glyphicon-ban-circle"></span> #500 Error</a></li>
@@ -80,6 +83,9 @@
 
 				<ul class="nav nav-sidebar">
 					<li><a href="/pull"><span class="glyphicon glyphicon-cloud-download"></span> Pull API</a></li>
+				</ul>
+				<ul class="nav nav-sidebar">
+					<li><a href="/benchmark"><span class="glyphicon glyphicon-cloud-download"></span> Benchmark</a></li>
 				</ul>
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -116,6 +122,10 @@
 						<div class="form-group">
 							<label for="secret">Secret</label>
 							<input type="text" class="form-control" name="secret" placeholder="<?php echo $this->secret ?>" value="<?php echo $this->secret ?>">
+						</div>
+						<div class="form-group">
+							<label for="secret">Favorite Chart ID</label>
+							<input type="text" class="form-control" name="chart_id" placeholder="<?php echo $this->chartId ?>" value="<?php echo $this->chartId ?>">
 						</div>
 					</div>
 					<div class="modal-footer">
