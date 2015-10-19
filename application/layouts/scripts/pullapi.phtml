@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="images/favicon.ico">
+    <link rel="icon" href="/images/favicon.ico">
 
     <title>Site Condition Creator - Catchpoint</title>
 
@@ -44,7 +44,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <?php if (Zend_Auth::getInstance()->hasIdentity()) : ?>
     		Test URL: <a href="/site/view/owner/<?php echo $this->user ?>" target="_blank"><?php echo $this->serverUrl() ?>/site/view/owner/<?php echo $this->user ?></a>
-    	<?php endif; ?>  
+    	<?php endif; ?>
         </div>
       </div>
     </div>
@@ -54,6 +54,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/scc.js"></script>    
+    <script src="/js/scc.js"></script>
   </body>
 </html>
