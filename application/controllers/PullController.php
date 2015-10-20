@@ -42,8 +42,8 @@ class PullController extends Zend_Controller_Action
         if ($result->key == null) {
             throw new Exception('No Key/Secret set!');
         } else {
-            $this->_key = $result->key;
-            $this->_secret = $result->secret;
+            $this->_key = base64_decode($result->key);
+            $this->_secret = base64_decode($result->secret);
 
             if (!isset($this->_session->token) || $this->_session->token == '') {
                 $this->getToken();
@@ -67,7 +67,7 @@ class PullController extends Zend_Controller_Action
         curl_setopt($ch, CURLOPT_STDERR, fopen('php://output', 'w+'));
         curl_setopt($ch, CURLOPT_VERBOSE, 1);
         */
-        
+
         $result = curl_exec($ch);
 
         curl_close($ch);

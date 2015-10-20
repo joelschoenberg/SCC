@@ -53,12 +53,11 @@ class Application_Model_SiteMapper
     {
         $data = array(
                 'user' => $site->getUser(),
-                'key' => $site->getKey(),
-                'secret' => $site->getSecret(),
+                'key' => base64_encode($site->getKey()),
+                'secret' => base64_encode($site->getSecret()),
                 'chart_id' => $site->getChartId(),
         );
 
-        print_r($data);
         $this->getDbTable()->update($data,
                 array(
                         'user = ?' => $site->getUser(),

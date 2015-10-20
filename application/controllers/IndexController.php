@@ -24,9 +24,9 @@ class IndexController extends Zend_Controller_Action
         $result = $site->fetchAll($this->_user);
         $this->view->user = $result->user;
         $this->_state = $result->state;
-        $this->view->key = (empty($result->key)) ? 'Key' : $result->key;
-        $this->view->secret = (empty($result->secret)) ? 'Secret' : $result->secret;
-        $this->view->chartId = (empty($result->chart_id)) ? 'Chart Id' : $result->chart_id;
+        $this->view->key = (empty($result->key)) ? '' : '.....';
+        $this->view->secret = (empty($result->secret)) ? '' : '..................';
+        $this->view->chartId = (empty($result->chart_id)) ? '' : $result->chart_id;
     }
 
     public function setAction()

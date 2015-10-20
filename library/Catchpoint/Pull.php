@@ -20,9 +20,10 @@ class Catchpoint_Pull
 
     public function fetchData($request)
     {
+        /*
         echo("<script>console.log('fetchData called');</script>");
-
         echo("<script>console.log('".$this->_url.$request."');</script>");
+        */
         $this->session = new Zend_Session_Namespace('Catchpoint');
 
         $this->session->setExpirationSeconds(60, 'token');
@@ -74,15 +75,17 @@ class Catchpoint_Pull
             $this->key = $apiKeys['master']['key'];
             $this->secret = $apiKeys['master']['secret'];
         }
+        /*
         echo("<script>console.log('getToken called');</script>");
         echo("<script>console.log('Key: ".$this->key."');</script>");
         echo("<script>console.log('Secret: ".$this->secret."');</script>");
+        */
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->_tokenUrl.'token');
         curl_setopt($ch, CURLOPT_POSTFIELDS,
-              'grant_type=client_credentials&client_id='.$this->key.
-              '&client_secret='.$this->secret);
+              'grant_type=client_credentials&client_id='.base64_decode($this->key).
+              '&client_secret='.base64_decode($this->secret));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         /*
         curl_setopt($ch, CURLOPT_STDERR, fopen('php://output', 'w+'));
@@ -95,8 +98,8 @@ class Catchpoint_Pull
 
         $jsonResponse = json_decode($result);
 
-        if (isset(jsonResponse->Message)) {
-          throw new Exception(jsonResponse->Message);
+        if (isset($jsonResponse->Message)) {
+          throw new Exception($jsonResponse->Message);
         }
         //echo("<script>console.log('Token: ".base64_encode($jsonResponse->access_token)."');</script>");
 
