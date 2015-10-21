@@ -103,6 +103,10 @@ class PullController extends Zend_Controller_Action
         $result = curl_exec($ch);
         curl_close($ch);
 
+        if (isset($result->Message)) {
+          throw new Exception($result->Message);
+        }
+
         print_r(json_decode($result));
         echo '</pre>';
     }
