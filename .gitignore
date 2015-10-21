@@ -5,3 +5,5 @@
 .project
 .zfproject.xml
 *.db
+
+data/db/scc.db
