@@ -139,7 +139,7 @@ code {
 .logout {
 	background: url(../images/icons/cancel.png) no-repeat 0;
 	padding-left: 20px;
-	
+
 	color: #fff;
 	text-decoration: none;
 }
@@ -263,7 +263,7 @@ code {
 }
 
 /* ------------------
- styling for the tables 
+ styling for the tables
    ------------------   */
 #box-table-a {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
