@@ -12,7 +12,7 @@ $serverList = array (
 		'ServerB',
 		'ServerC',
 		'ServerD',
-		'ServerE' 
+		'ServerE'
 );
 header ( 'ServerName: ' . $serverList [array_rand ( $serverList )] );
 ?>
@@ -29,44 +29,35 @@ header ( 'ServerName: ' . $serverList [array_rand ( $serverList )] );
 function RProfiler(){} (function(){var restUrl ="cpqa.catchpoint.com/jp/v2/M"; var cfgUrl ="cpqa.catchpoint.com/jp/225/v2/C"; var gsTime=(new Date()).getTime();var RP=window.RProfiler;if(!RP||RP.d){return;}RP.a={};RP.addInfo=function(iType,key,value){if(iType===undefined||iType===null){return;}if(value===undefined||value===null){RP.a[iType]=key;}else{if(key===undefined||key===null){return;}if(!RP.a[iType]){RP.a[iType]={};}RP.a[iType][key]=value;}};if(!document.getElementById||!(window.attachEvent||window.addEventListener)){return;}RP.d={s:gsTime,lT:-1,jsC:undefined,jsE:undefined,Lf:-1};var $E=RP.$E=(function(){var sc={};function add(type,el,fn){if(!sc[type]){sc[type]=[];}sc[type].push([el,type,fn]);}var atEv=(window.attachEvent)?true:false;return{add:function(type,el,fn){add(type,el,fn);if(atEv){el.attachEvent('on'+type,fn);}else{el.addEventListener(type,fn,false);}},clearAll:function(){for(var type in sc){var e,evs=sc[type];if((evs) && (evs.length>0)){for(var i=0;i<evs.length;i++){e=evs[i];if(atEv){e[0].detachEvent(e[1],e[2]);}else{e[0].removeEventListener(e[1],e[2],false);}}}}sc={};}};})();function regPL(){RP.d.lT=(new Date()).getTime();RP.d.Lf=1;}$E.add('load',window,regPL);function addErrorToList(m,u,l){RP.d.jsC++;var k=[m,u,l].join(':'),bFound=false;var e=RP.d.jsE;for(var i=0;i<e.length;i++){if(e[i][0]===k){e[i][4]++;bFound=true;break;}}if(!bFound){e.push([k,m,u,l,1]);}}if(!!window.opera){function regJsError(e){var ev=(e.target)?e.target:e.srcElement;if(ev.nodeType==3){ev=ev.parentNode;}addErrorToList('N/A',ev.src||ev.URL,'N/A');return false;}RP.d.jsC=0;RP.d.jsE=[];$E.add('error',document,regJsError);}else if("onerror" in window){RP.d.jsC=0;RP.d.jsE=[];var orgOnErr=window.onerror;window.onerror=function(m,u,l){addErrorToList(m,u,l);var r=false;if(!!orgOnErr){r=orgOnErr(m,u,l);}return r;};}if(!!window.__cpCdnPath){restUrl=__cpCdnPath.trim();}var r=document.createElement("iframe");var s=r.style;s.position="absolute";s.top="-10000px";s.left="-1000px";var at=document.getElementsByTagName('script')[0];at.parentNode.insertBefore(r,at);var i=r.contentWindow.document.open('text/html','replace');var pr=window.location.protocol+'//';i.write("<body onload='function f(u){ var d=document, s = d.createElement(\"script\"); s.type=\"text/javascript\"; s.src=u; d.body.appendChild(s); } f(\""+pr+cfgUrl+"\"); f(\""+pr+restUrl+"\");'><\/body>");i.close();})();
 </script>
 <?php endif; ?>
-<link rel="icon" href="images/favicon.ico">
+<link rel="icon" href="/images/favicon.ico">
 <title>Catchpoint - Site Conditions Creator</title>
     <?php if ($this->escape($this->state) == 'css_error') : ?>
-    <link href="/css/missing.css" media="screen" rel="stylesheet"
-	type="text/css" />
+    <link href="/css/missing.css" media="screen" rel="stylesheet" type="text/css" />
     <?php endif; ?>
     <!-- Bootstrap core CSS -->
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link href="/css/scc.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="container">
-	      <div class="page-header">
-        <h1>Test Condition</h1>
-      </div>
-		<!-- <div class="<?php echo $this->escape($this->state);?> alert">
-			<div class="main">-->
-		<!-- <p style="font-weight: bold">Hello <?php echo $this->user ?>,</p> -->
-				<?php //include ($this->state.'.phtml');?>
-				<?php //$view = file_get_contents(dirname(__FILE__).'/'.$s.'.phtml'); echo $view; ?>
-				<?php echo $this->render('site/' . $this->state . '.phtml'); ?>
-				<br />
-		<!-- 
-			</div>
+		<div class="jumbotron">
+			<div class="container">
+		  	<h1>Test Conditiion</h1>
+		  </div>
 		</div>
-		 -->
+		<?php echo $this->render('site/' . $this->state . '.phtml'); ?>
 	</div>
 	<div class="footer">
-    <div class="container">
-        <p class="text-muted">Page Generated in <?php echo $this->totalTime ?> seconds</p>
-      </div>
+  	<div class="container">
+    	<p class="text-muted">Page Generated in <?php echo $this->totalTime ?> seconds</p>
     </div>
+  </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<?php if ($this->escape($this->state) == 'js_error') :?>
     <script src="/js/js_error.js"></script>
     <script src="/js/jsAjax_error.js"></script>
-    <?php endif; ?>
+  <?php endif; ?>
 </body>
 </html>
