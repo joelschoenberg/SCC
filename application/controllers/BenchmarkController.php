@@ -25,6 +25,8 @@ class BenchmarkController extends Zend_Controller_Action
         $result = $charts->fetchAll();
 
         $this->view->current = $result;
+        //$uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
+        //echo $uri;
     }
 
     public function indexAction()
