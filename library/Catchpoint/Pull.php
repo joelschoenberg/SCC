@@ -34,7 +34,7 @@ class Catchpoint_Pull
             $this->session->token = $this->getToken();
         }
 
-        echo("<script>console.log('Session Token: ".$this->session->token."');</script>");
+        //echo("<script>console.log('Session Token: ".$this->session->token."');</script>");
         if (!isset($this->session->token) || $this->session->token == '') {
             $this->session->token = $this->getToken();
         //} else {
@@ -75,6 +75,7 @@ class Catchpoint_Pull
             $this->key = $apiKeys['master']['key'];
             $this->secret = $apiKeys['master']['secret'];
         }
+
         /*
         echo("<script>console.log('getToken called');</script>");
         echo("<script>console.log('Key: ".$this->key."');</script>");
