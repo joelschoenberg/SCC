@@ -1,7 +1,30 @@
-<form role="form" action="/pull/api" method="POST">
+<form role="form" method="POST" id="apiForm">
   <div class="form-group">
-    <label for="exampleInputEmail1">https://io.catchpoint.com/ui/api/v1/</label>
+    <label for="url">https://io.catchpoint.com/ui/api/v1/</label>
     <input type="text" class="form-control" id="call" name="call" placeholder="API Call">
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="submit" id="submit" class="btn btn-primary">Submit</button>
 </form>
+<hr />
+<pre id="apiResult"></pre>
+<script>
+$(document).ready(function(){
+    $("pre").hide();
+    $("#apiForm").submit(function(e){
+        e.preventDefault();
+        call = $("#call").val();
+        $.ajax({
+            type: "POST",
+            url: "/pull/api/call/" + call,
+            //dataType: "json",
+            success: function(data){
+                $("pre").show();
+                $("#apiResult").html(data);
+            },
+            error: function(exception){
+                alert('Exeption:'+exception);
+            }
+        })
+    })
+})
+</script>
