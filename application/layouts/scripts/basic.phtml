@@ -12,6 +12,8 @@
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="/css/scc.css" rel="stylesheet">
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </head>
 
 <body onload="$('#username').focus()">
@@ -23,15 +25,15 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-            <?php if (Zend_Auth::getInstance()->hasIdentity()) : ?>
-            <li class="active"><a href="#"><span
-							class="glyphicon glyphicon-user"></span> <?php echo $this->user ?></a></li>
-					<li><a href="#" data-toggle="modal" data-target="#myModal"><span
-							class="glyphicon glyphicon-cog"></span></a></li>
-					<li><a href="/login/logout"><span
-							class="glyphicon glyphicon-log-out"></span></a></li>
-			<?php endif; ?>
-          </ul>
+					<li class="dropdown active"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>  <?php echo $this->user ?> <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#" data-toggle="modal" data-target="#myModal"><span
+							class="glyphicon glyphicon-cog"></span>  Settings</a></li>
+							<li class="divider"></li>
+							<li><a href="/login/logout"><span class="glyphicon glyphicon-log-out"></span>  Logout</a></li>
+						</ul>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -72,7 +74,5 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="/js/jquery.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
