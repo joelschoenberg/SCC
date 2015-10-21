@@ -7,22 +7,26 @@
 </form>
 <hr />
 <pre id="apiResult"></pre>
+<div id="pull">Retrieving data ... </div>
 <script>
 $(document).ready(function(){
     $("pre").hide();
+    $("#pull").hide();
     $("#apiForm").submit(function(e){
+        $("pre").hide();
+        $("#pull").show();
         e.preventDefault();
         call = $("#call").val();
         $.ajax({
             type: "POST",
             url: "/pull/api/call/" + call,
-            //dataType: "json",
             success: function(data){
                 $("pre").show();
+                $("#pull").hide();
                 $("#apiResult").html(data);
             },
-            error: function(exception){
-                alert('Exeption:'+exception);
+            error: function (request, status, error) {
+                $("#pull").html(error);
             }
         })
     })
