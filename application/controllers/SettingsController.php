@@ -4,6 +4,10 @@ class SettingsController extends Zend_Controller_Action
 {
     protected $_user;
 
+    protected $_key;
+
+    protected $_secret;
+
     public function preDispatch()
     {
         if (!Zend_Auth::getInstance()->hasIdentity()) {
@@ -18,6 +22,12 @@ class SettingsController extends Zend_Controller_Action
         $this->_user = Zend_Auth::getInstance()->getIdentity();
         $this->view->user = $this->_user;
 
+        $site = new Application_Model_SiteMapper();
+
+        $result = $site->fetchAll($this->_user);
+        $this->_key = base64_decode($result->key);
+        $this->_secret = base64_decode($result->secret);
+
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
     }
@@ -28,12 +38,15 @@ class SettingsController extends Zend_Controller_Action
 
     public function saveAction()
     {
+        $key = (!$this->_getParam('key')) ? $this->_key : $this->_getParam('key');
+        $secret = (!$this->_getParam('secret')) ? $this->_secret : $this->_getParam('secret');
+
         $settings = new Application_Model_Site(
                 array(
                         'user' => $this->_user,
-                        'key' => $this->_getParam('key'),
-                        'secret' => $this->_getParam('secret'),
-                        'chartId' => $this->_getParam('chart_id')
+                        'key' => $key,
+                        'secret' => $secret,
+                        'chartId' => $this->_getParam('chart_id'),
                 ));
 
         $mapper = new Application_Model_SiteMapper();
