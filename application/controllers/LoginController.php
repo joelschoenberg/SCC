@@ -4,7 +4,7 @@ class LoginController extends Zend_Controller_Action
 {
     public function init()
     {
-        $this->_helper->layout->setLayout('basic');
+        $this->_helper->layout->setLayout('login');
     }
 
     public function getForm()
