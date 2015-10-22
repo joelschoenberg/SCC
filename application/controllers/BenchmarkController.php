@@ -50,17 +50,6 @@ class BenchmarkController extends Zend_Controller_Action
 
     public function createAction()
     {
-        $chart = new Application_Model_BenchmarkCharts(
-                array(
-                        'cid' => $this->_getParam('id'),
-                        'name' => $this->_getParam('name'),
-                        'modified' => date('Y-m-d H:i:s')
-                ));
-
-        $mapper = new Application_Model_BenchmarkChartsMapper();
-
-        $mapper->save($chart);
-
         $t = new Catchpoint_Pull();
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
@@ -102,6 +91,18 @@ class BenchmarkController extends Zend_Controller_Action
 
             $mapper->save($data);
         }
+
+        $chart = new Application_Model_BenchmarkCharts(
+                array(
+                        'cid' => $this->_getParam('id'),
+                        'name' => $this->_getParam('name'),
+                        'modified' => date('Y-m-d H:i:s')
+                ));
+
+        $mapper = new Application_Model_BenchmarkChartsMapper();
+
+        $mapper->save($chart);
+        
         $this->_helper->redirector('index', 'benchmark');
     }
 
@@ -184,7 +185,6 @@ class BenchmarkController extends Zend_Controller_Action
         $this->view->creator = $this->session->userDetails[0];
         $this->view->jobTitle = $this->session->userDetails[1];
         $this->view->contactNumber = $this->session->userDetails[2];
-
     }
 
     public function addAction()
