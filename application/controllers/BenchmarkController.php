@@ -60,7 +60,7 @@ class BenchmarkController extends Zend_Controller_Action
         foreach ($myArray as $m) {
             foreach ($m->summary->items as $a) {
                 $tests[] = array(
-                'id' => $chart->cid,
+                'id' => $this->_getParam('id'),
                 'name' => $a->breakdown_1->name,
                 'dns' => round($a->synthetic_metrics[0] / 1000, 3),
                 'wait' => round($a->synthetic_metrics[1] / 1000, 3),
@@ -102,7 +102,7 @@ class BenchmarkController extends Zend_Controller_Action
         $mapper = new Application_Model_BenchmarkChartsMapper();
 
         $mapper->save($chart);
-        
+
         $this->_helper->redirector('index', 'benchmark');
     }
 
