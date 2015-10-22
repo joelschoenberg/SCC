@@ -37,17 +37,7 @@
 			<a class="navbar-brand" href="/">catchpoint</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="/benchmark">Home</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-book"></span> Report <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-							<li><a href="/benchmark"><span class="glyphicon glyphicon-stats"></span> Create New Report</li>
-						<li role="separator" class="divider"></li>
-						<li><a href="/benchmark/add"><span class="glyphicon glyphicon-plus"></span> Add New Benchmark</a></li>
-						<li><a href="/benchmark/update"><span class="glyphicon glyphicon-refresh"></span> Update Benchmarks</a></li>
-					</ul>
-				</li>
+			<ul class="nav navbar-nav navbar-right">
 				<!--<li><a href="#contact">Contact</a></li>-->
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-book"></span> Benchmarks <span class="caret"></span></a>
@@ -60,8 +50,6 @@
 						<li><a href="/benchmark/update"><span class="glyphicon glyphicon-refresh"></span> Update Benchmarks</a></li>
 					</ul>
 				</li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>  <?php echo $this->user ?> <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="#" data-toggle="modal" data-target="#myModal"><span
