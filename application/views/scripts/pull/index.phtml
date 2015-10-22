@@ -7,14 +7,14 @@
 </form>
 <hr />
 <pre id="apiResult"></pre>
-<div id="pull">Retrieving data ... </div>
+<div id="loading"></div>
 <script>
 $(document).ready(function(){
     $("pre").hide();
-    $("#pull").hide();
+    $("#loading").hide();
     $("#apiForm").submit(function(e){
         $("pre").hide();
-        $("#pull").show();
+        $("#loading").show();
         e.preventDefault();
         call = $("#call").val();
         $.ajax({
@@ -22,11 +22,11 @@ $(document).ready(function(){
             url: "/pull/api/call/" + call,
             success: function(data){
                 $("pre").show();
-                $("#pull").hide();
+                $("#loading").hide();
                 $("#apiResult").html(data);
             },
             error: function (request, status, error) {
-                $("#pull").html(error);
+                $("pre").html(error);
             }
         })
     })
