@@ -72,8 +72,8 @@ class Catchpoint_Pull
         $apiKeys = $config->getOption('catchpoint');
 
         if (!$this->key) {
-            $this->key = $apiKeys['master']['key'];
-            $this->secret = $apiKeys['master']['secret'];
+            $this->key = base64_encode($apiKeys['master']['key']);
+            $this->secret = base64_encode($apiKeys['master']['secret']);
         }
 
         /*
@@ -88,11 +88,12 @@ class Catchpoint_Pull
               'grant_type=client_credentials&client_id='.base64_decode($this->key).
               '&client_secret='.base64_decode($this->secret));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
         /*
         curl_setopt($ch, CURLOPT_STDERR, fopen('php://output', 'w+'));
         curl_setopt($ch, CURLOPT_VERBOSE, 1);
         */
-
+        
         $result = curl_exec($ch);
 
         curl_close($ch);
@@ -102,6 +103,7 @@ class Catchpoint_Pull
         if (isset($jsonResponse->Message)) {
           throw new Exception($jsonResponse->Message);
         }
+
         //echo("<script>console.log('Token: ".base64_encode($jsonResponse->access_token)."');</script>");
 
         return base64_encode($jsonResponse->access_token);
