@@ -70,4 +70,14 @@ class Application_Model_BenchmarkChartsMapper
 
         return $charts;
     }
+
+    public function fetchChartName($cid)
+    {
+        $query = $this->getDbTable()
+            ->select()
+            ->where('cid = ?', $cid);
+        $resultSet = $this->getDbTable()->fetchRow($query);
+
+        return $resultSet;
+    }
 }
