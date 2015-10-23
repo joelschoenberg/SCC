@@ -154,6 +154,11 @@ class BenchmarkController extends Zend_Controller_Action
 
         $result = $data->fetchData($this->_getParam('cid'));
 
+        $chart = new Application_Model_BenchmarkChartsMapper();
+
+        $getChartName = $chart->fetchChartName($this->_getParam('cid'));
+
+        $this->view->chartName = $getChartName->name;
         $data = (array) $result;
 
         $metrics = array('dns', 'wait', 'load', 'doc_complete', 'webpage_response');
