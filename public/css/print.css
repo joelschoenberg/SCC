@@ -7,16 +7,21 @@ body {
   padding-top: 50px;
 }
 
+.jumbotron h2 {
+    color: #0c6cb3;
+}
 @media print {
     .data {
     page-break-after: always;
   }
 }
 
-@page { margin: 0% 5%; size: landscape;}
+@page {
+    margin: 0% 5%; size: landscape;
+}
 
 .footer {
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 /*
