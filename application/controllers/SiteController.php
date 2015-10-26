@@ -6,8 +6,6 @@ class SiteController extends Zend_Controller_Action
 
     protected $_endTime;
 
-    protected $_totalTime;
-
     public function preDispatch()
     {
         parent::preDispatch();
@@ -18,8 +16,8 @@ class SiteController extends Zend_Controller_Action
     {
         parent::postDispatch();
         $this->_endTime = microtime(true);
-        $this->_totalTime = $this->_endTime - $this->_startTime;
-        $this->view->totalTime = number_format($this->_totalTime, 4);
+        $totalTime = $this->_endTime - $this->_startTime;
+        $this->view->totalTime = number_format($totalTime, 4);
     }
 
     public function init()
@@ -39,11 +37,8 @@ class SiteController extends Zend_Controller_Action
 
         $result = $site->fetchAll($user);
 
-        $this->view->user = $result['user'];
+        $this->view->user  = $result['user'];
         $this->view->state = $result['state'];
-
-        //$this->_helper->viewRenderer->setNoRender(true);
-        //$this->renderScript('site/' . $this->view->state . '.phtml');
     }
 
     public function loremAction()

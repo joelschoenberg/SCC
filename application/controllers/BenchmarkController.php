@@ -18,15 +18,14 @@ class BenchmarkController extends Zend_Controller_Action
         date_default_timezone_set('UTC');
         $this->_user = Zend_Auth::getInstance()->getIdentity();
         $this->view->user = $this->_user;
+
         $this->_helper->layout->setLayout('benchmark');
-        //$this->_helper->layout->disableLayout();
-        //$this->_helper->viewRenderer->setNoRender(true);
+
         $charts = new Application_Model_BenchmarkChartsMapper();
+
         $result = $charts->fetchAll();
 
         $this->view->current = $result;
-        //$uri = Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();
-        //echo $uri;
     }
 
     public function indexAction()
@@ -36,6 +35,7 @@ class BenchmarkController extends Zend_Controller_Action
         } else {
             $user = $this->_getParam('owner');
         }
+
         $site = new Application_Model_SiteMapper();
 
         $result = $site->fetchAll($user);
@@ -43,8 +43,9 @@ class BenchmarkController extends Zend_Controller_Action
         if (!$result['chart_id'] | $result['chart_id'] == null) {
           throw new Exception('No Favorite Chart ID found. Please go to settings and enter one.');
         }
-        $this->view->key = $result['key'];
-        $this->view->secret = $result['secret'];
+
+        $this->view->key     = $result['key'];
+        $this->view->secret  = $result['secret'];
         $this->view->chartId = $result['chart_id'];
     }
 
@@ -57,6 +58,7 @@ class BenchmarkController extends Zend_Controller_Action
         $myArray[] = $t->fetchData('performance/favoriteCharts/'.$this->_getParam('id').'/data');
 
         $tests = array();
+
         foreach ($myArray as $m) {
             foreach ($m->summary->items as $a) {
                 $tests[] = array(
@@ -74,6 +76,7 @@ class BenchmarkController extends Zend_Controller_Action
 
         foreach ($tests as $t) {
             $name = preg_replace('/[^A-Za-z0-9\-]/', '', $t['name']);
+
             $data = new Application_Model_BenchmarkData(
                   array(
                           'chartId' => $t['id'],
@@ -111,16 +114,20 @@ class BenchmarkController extends Zend_Controller_Action
         if (!$this->_getParam('testid')) {
           throw new Exception('No Test ID found!');
         }
+
         $site = new Application_Model_SiteMapper();
 
         $result = $site->fetchAll($this->_user);
+
         $t = new Catchpoint_Pull();
         $t->override = true;
         $t->key = $result['key'];
         $t->secret = $result['secret'];
 
         $myArray[] = $t->fetchData('performance/favoriteCharts/'.$result['chart_id'].'/data?tests=' . $this->_getParam('testid'));
+
         $tests = array();
+
         foreach ($myArray as $m) {
             foreach ($m->summary->items as $a) {
                 $tests[] = array(
@@ -134,6 +141,7 @@ class BenchmarkController extends Zend_Controller_Action
               'items' => round($a->synthetic_metrics[6], 0), );
             }
         }
+
         $this->session = new Zend_Session_Namespace('Catchpoint');
         $this->session->userChart = $tests[0];
         $this->session->userDetails = array(
@@ -143,7 +151,6 @@ class BenchmarkController extends Zend_Controller_Action
         );
 
         $this->view->testDetails = $tests[0];
-      //$testData = $t->fetchData($request);
     }
 
     public function viewAction()
@@ -213,19 +220,21 @@ class BenchmarkController extends Zend_Controller_Action
 
           $chart = new Application_Model_BenchmarkCharts(
                   array(
-                          'id' => $r->id,
-                          'cid' => $r->cid,
-                          'name' => $r->name,
-                          'modified' => date('Y-m-d H:i:s')
+                      'id' => $r->id,
+                      'cid' => $r->cid,
+                      'name' => $r->name,
+                      'modified' => date('Y-m-d H:i:s')
                   ));
 
           $mapper = new Application_Model_BenchmarkChartsMapper();
 
           $mapper->save($chart);
+
           sleep(5);
         }
 
         $tests = array();
+
         foreach ($myArray as $m) {
             foreach ($m->summary->items as $a) {
               $tests[] = array(
@@ -245,22 +254,39 @@ class BenchmarkController extends Zend_Controller_Action
             echo 'Updating '.$t['name'];
             $data = new Application_Model_BenchmarkData(
                 array(
-                        'chartId' => $t['id'],
-                        'name' => $t['name'],
-                        'dns' => $t['dns'],
-                        'wait' => $t['wait'],
-                        'load' => $t['load'],
-                        'bytes' => $t['bytes'],
-                        'docComplete' => $t['doc_complete'],
-                        'webpageResponse' => $t['webpage_response'],
-                        'items' => $t['items'],
+                    'chartId' => $t['id'],
+                    'name' => $t['name'],
+                    'dns' => $t['dns'],
+                    'wait' => $t['wait'],
+                    'load' => $t['load'],
+                    'bytes' => $t['bytes'],
+                    'docComplete' => $t['doc_complete'],
+                    'webpageResponse' => $t['webpage_response'],
+                    'items' => $t['items'],
                 ));
 
             $mapper = new Application_Model_BenchmarkDataMapper();
 
             $mapper->update($data);
-            //echo "Updating " . $t['name'];
-            //$this->_helper->redirector('test', 'benchmark');
         }
+    }
+
+    public function detailsAction()
+    {
+        //$this->_helper->layout->setLayout('print');
+
+        $data = new Application_Model_BenchmarkDataMapper();
+
+        $result = $data->fetchData($this->_getParam('cid'));
+
+        $chart = new Application_Model_BenchmarkChartsMapper();
+
+        $getChartName = $chart->fetchChartName($this->_getParam('cid'));
+
+        $this->view->chartName = $getChartName->name;
+        $this->view->cid = $getChartName->cid;
+        $this->view->modified = $getChartName->modified;
+        $this->view->data = $result;
+        //print_r ($data);
     }
 }

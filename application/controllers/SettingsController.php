@@ -43,10 +43,10 @@ class SettingsController extends Zend_Controller_Action
 
         $settings = new Application_Model_Site(
                 array(
-                        'user' => $this->_user,
-                        'key' => $key,
-                        'secret' => $secret,
-                        'chartId' => $this->_getParam('chart_id'),
+                    'user' => $this->_user,
+                    'key' => $key,
+                    'secret' => $secret,
+                    'chartId' => $this->_getParam('chart_id'),
                 ));
 
         $mapper = new Application_Model_SiteMapper();

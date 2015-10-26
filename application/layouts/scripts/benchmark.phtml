@@ -38,7 +38,7 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<!--<li><a href="#contact">Contact</a></li>-->
+				<?php if ($this->user == "benchmark") : ?>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-book"></span> Benchmarks <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -47,9 +47,10 @@
 						<?php endforeach ?>
 						<li role="separator" class="divider"></li>
 						<li><a href="/benchmark/add"><span class="glyphicon glyphicon-plus"></span> Add New Benchmark</a></li>
-						<li><a href="/benchmark/update"><span class="glyphicon glyphicon-refresh"></span> Update Benchmarks</a></li>
+						<li><a href="/benchmark/update"><span class="glyphicon glyphicon-refresh"></span> Update All Benchmarks</a></li>
 					</ul>
 				</li>
+				<?php endif; ?>
 				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>  <?php echo $this->user ?> <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="#" data-toggle="modal" data-target="#myModal"><span
@@ -96,12 +97,9 @@
 		</div>
 	</div>
 </div>
-	<!--<div class="container theme-showcase" role="main">-->
-      	<?php echo $this->layout()->content?>
-      <!--</div>-->
-
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
+	<?php echo $this->layout()->content?>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
 </body>
 </html>
