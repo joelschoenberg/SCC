@@ -54,6 +54,7 @@
 	</nav>
 
 	<div class="container-fluid">
+		<!--
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
@@ -99,6 +100,34 @@
         </div>
 		</div>
 	</div>
+	-->
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">You test URL</h3>
+		</div>
+		<div class="panel-body">
+			<h5>
+				<a href="/site/view/owner/<?php echo $this->user ?>" target="_blank"><?php echo $this->serverUrl() ?>/site/view/owner/<?php echo $this->user ?></a>
+			</h5>
+		</div>
+	</div>
+	<div class="row">
+	<?php foreach($this->menu as $key => $value) : ?>
+	<div class="col-md-2 col-sm-2 col-lg-2">
+		<a href="/index/state/type/<?php echo $key ?>">
+			<div class="thumbnail <?php if ($this->state == $key) echo 'active'?>">
+				<div class="text-center">
+				<span style="font-size: 3em;" class="glyphicon glyphicon-<?php echo $value[0] ?>"></span>
+			</div>
+				<div class="caption">
+					<h5 class="text-center"><?php echo $value[1] ?></h5>
+				</div>
+			</div>
+		</a>
+	</div>
+	<?php endforeach; ?>
+</div>
+	<?php echo $this->layout()->content?>
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">

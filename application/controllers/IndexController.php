@@ -24,9 +24,27 @@ class IndexController extends Zend_Controller_Action
         $result = $site->fetchAll($this->_user);
         $this->view->user = $result->user;
         $this->_state = $result->state;
+        $this->view->state = $result->state;
         $this->view->key = (empty($result->key)) ? '' : '.....';
         $this->view->secret = (empty($result->secret)) ? '' : '..................';
         $this->view->chartId = (empty($result->chart_id)) ? '' : $result->chart_id;
+
+        $siteOptions = array(
+                'default' => array('flash', 'Default'),
+                'validation_error' => array('warning-sign', 'Validation Error'),
+                'css_error' => array('warning-sign', 'CSS Error'),
+                'js_error' => array('warning-sign', 'JavsScript Error'),
+                '404' => array('exclamation-sign', '40x Error'),
+                '500' => array('ban-circle', '500x Error'),
+                'delay' => array('pause', 'Content Delay'),
+                'timeout' => array('time', 'Timeout'),
+                'cookies' => array('warning-sign', 'Cookies'),
+                'hosts_and_zones' => array('filter', 'Hosts &amp; Zones'),
+                'chrome' => array('globe', 'Chrome'),
+                'glimpse' => array('user', 'Glimpse')
+        );
+
+        $this->view->menu = $siteOptions;
     }
 
     public function setAction()
@@ -66,5 +84,8 @@ class IndexController extends Zend_Controller_Action
         $mapper = new Application_Model_SiteMapper();
 
         $mapper->save($site);
+
+        $this->_helper->redirector('index', 'index');
+
     }
 }
