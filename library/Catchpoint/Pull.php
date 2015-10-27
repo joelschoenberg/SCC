@@ -49,10 +49,12 @@ class Catchpoint_Pull
                     'Authorization: Bearer '.$this->session->token,
             ));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
         /*
         curl_setopt($ch, CURLOPT_STDERR, fopen('php://output', 'w+'));
         curl_setopt($ch, CURLOPT_VERBOSE, 1);
         */
+
         $result = curl_exec($ch);
 
         curl_close($ch);
@@ -61,6 +63,10 @@ class Catchpoint_Pull
 
         if (isset($data->Message)) {
             throw new Exception($data->Message);
+        }
+
+        if(!$result) {
+            throw new Exception('Error getting data ...');
         }
 
         return $data;
@@ -76,11 +82,11 @@ class Catchpoint_Pull
             $this->secret = base64_encode($apiKeys['master']['secret']);
         }
 
-        /*
+
         echo("<script>console.log('getToken called');</script>");
         echo("<script>console.log('Key: ".$this->key."');</script>");
         echo("<script>console.log('Secret: ".$this->secret."');</script>");
-        */
+
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->_tokenUrl.'token');
@@ -93,7 +99,7 @@ class Catchpoint_Pull
         curl_setopt($ch, CURLOPT_STDERR, fopen('php://output', 'w+'));
         curl_setopt($ch, CURLOPT_VERBOSE, 1);
         */
-        
+
         $result = curl_exec($ch);
 
         curl_close($ch);
