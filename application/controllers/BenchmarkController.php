@@ -230,7 +230,7 @@ class BenchmarkController extends Zend_Controller_Action
 
           $mapper->save($chart);
 
-          sleep(5);
+          sleep(2);
         }
 
         $tests = array();
