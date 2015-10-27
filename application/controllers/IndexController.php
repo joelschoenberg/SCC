@@ -35,7 +35,7 @@ class IndexController extends Zend_Controller_Action
                 'css_error' => array('warning-sign', 'CSS Error'),
                 'js_error' => array('warning-sign', 'JavsScript Error'),
                 '404' => array('exclamation-sign', '40x Error'),
-                '500' => array('ban-circle', '500x Error'),
+                '500' => array('ban-circle', '50x Error'),
                 'delay' => array('pause', 'Content Delay'),
                 'timeout' => array('time', 'Timeout'),
                 'cookies' => array('warning-sign', 'Cookies'),
