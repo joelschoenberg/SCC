@@ -7,6 +7,10 @@ body {
   padding-top: 60px;
 }
 
+.jcolor {
+    background-color: #0c6cb3;
+}
+
 .thumbnail,
 .thumbnail h5 {
     background-color: #337ab7;

@@ -6,3 +6,8 @@
 body {
   padding-top: 50px;
 }
+
+.jcolor {
+    background-color: #0c6cb3 !important;
+    color: #fff;
+}

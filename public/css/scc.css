@@ -79,3 +79,7 @@ body > .container {
 	background: url(../images/ajax-loader.gif) no-repeat center #fff;
 	z-index: 999;
 }
+
+.jcolor {
+    background-color: #0c6cb3 !important;
+}
