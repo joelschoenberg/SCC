@@ -13,13 +13,13 @@ body {
 }
 
 .thumbnail,
-.thumbnail h5 {
+.thumbnail h5, .thumbnail h6 {
     background-color: #337ab7;
     color: #fff;
     text-decoration: none;
 }
 .thumbnail.active,
-.thumbnail.active h5{
+.thumbnail.active h5, .thumbnail.active h6{
     background-color: #5cb85c;
     color: #fff;
 }

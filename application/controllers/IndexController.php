@@ -30,18 +30,18 @@ class IndexController extends Zend_Controller_Action
         $this->view->chartId = (empty($result->chart_id)) ? '' : $result->chart_id;
 
         $siteOptions = array(
-                'default' => array('flash', 'Default'),
-                'validation_error' => array('warning-sign', 'Validation Error'),
-                'css_error' => array('warning-sign', 'CSS Error'),
-                'js_error' => array('warning-sign', 'JavsScript Error'),
-                '404' => array('exclamation-sign', '40x Error'),
-                '500' => array('ban-circle', '50x Error'),
-                'delay' => array('pause', 'Content Delay'),
-                'timeout' => array('time', 'Timeout'),
-                'cookies' => array('warning-sign', 'Cookies'),
+                'default' => array('refresh', 'Default'),
+                'validation_error' => array('flash', 'Validation Error'),
+                'css_error' => array('file-text-o', 'CSS Error'),
+                'js_error' => array('file-code-o', 'JavsScript Error'),
+                '404' => array('info-circle', '40x Error'),
+                '500' => array('warning', '50x Error'),
+                'delay' => array('circle-o-notch fa-spin', 'Content Delay'),
+                'timeout' => array('spinner fa-spin', 'Timeout'),
+                'cookies' => array('globe', 'Cookies'),
                 'hosts_and_zones' => array('filter', 'Hosts &amp; Zones'),
-                'chrome' => array('globe', 'Chrome'),
-                'glimpse' => array('user', 'Glimpse')
+                'chrome' => array('chrome', 'Chrome'),
+                'glimpse' => array('users', 'Glimpse')
         );
 
         $this->view->menu = $siteOptions;
