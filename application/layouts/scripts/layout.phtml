@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="icon" href="/images/favicon.ico">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="/images/favicon.ico">
 
-<title>Site Condition Creator - Catchpoint</title>
+	<title>Site Condition Creator - Catchpoint</title>
 
-<!-- Bootstrap core CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet">
-<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
-<!--
-<link href="/css/scc.css" rel="stylesheet">
--->
-<!-- Custom styles for this template -->
-<link href="/css/dashboard.css" rel="stylesheet">
+	<!-- Bootstrap core CSS -->
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+	<!-- <link href="/css/scc.css" rel="stylesheet"> -->
+	<!-- Custom styles for this template -->
+	<link href="/css/dashboard.css" rel="stylesheet">
 </head>
 
 <body>
@@ -30,159 +29,92 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a href="/"><img class="img-responsive" src="/images/cp_white.png"></a>
+				<a href="/">
+					<img class="img-responsive" src="/images/cp_white.png">
+				</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="/pull"><span class="glyphicon glyphicon-cloud"></span> Pull API</a>
+						<a href="/pull">
+							<span class="glyphicon glyphicon-cloud"></span> Pull API</a>
 					</li>
 					<li>
-						<a href="/benchmark"><span class="glyphicon glyphicon-book"></span> Benchmark</a>
+						<a href="/benchmark">
+							<span class="glyphicon glyphicon-book"></span> Benchmark</a>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<span class="glyphicon glyphicon-user"></span>  <?php echo $this->user ?> <b class="caret"></b>
+							<span class="glyphicon glyphicon-user"></span>
+							<?php echo $this->user ?> <b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
 							<li>
 								<a href="#" data-toggle="modal" data-target="#myModal">
-									<span class="glyphicon glyphicon-cog"></span>  Settings
+									<span class="glyphicon glyphicon-cog"></span> Settings
 								</a>
 							</li>
 							<li class="divider"></li>
-							<li><a href="/login/logout"><span class="glyphicon glyphicon-log-out"></span>  Logout</a></li>
+							<li>
+								<a href="/login/logout">
+									<span class="glyphicon glyphicon-log-out"></span> Logout</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-
+	<div class="jumbotron jcolor">
+	      <div class="container">
+	          <h1>Your Test URL</h1>
+	        <p><?php echo $this->serverUrl() ?>/site/view/owner/<?php echo $this->user ?>
+					<a class="btn btn-success btn-md" href="<?php echo $this->serverUrl() ?>/site/view/owner/<?php echo $this->user ?>" role="button" target="_blank">View in new tab</a></p>
+	      </div>
+	</div>
 	<div class="container-fluid">
-		<!--
 		<div class="row">
-			<div class="col-sm-3 col-md-2 sidebar">
-				<ul class="nav nav-sidebar">
-					<li><a href="/index/state/type/validation_error"><span class="glyphicon glyphicon-warning-sign"></span> Validation Error</a></li>
-					<li><a href="/index/state/type/css_error"><span class="glyphicon glyphicon-warning-sign"></span> CSS Error</a></li>
-					<li><a href="/index/state/type/js_error"><span class="glyphicon glyphicon-warning-sign"></span> JavaScript Error</a></li>
-					<li><a href="/index/state/type/timeout"><span class="glyphicon glyphicon-time"></span> Timeout Error</a></li>
-					<li><a href="/index/state/type/404"><span class="glyphicon glyphicon-exclamation-sign"></span> #404 Error</a></li>
-					<li><a href="/index/state/type/500"><span class="glyphicon glyphicon-ban-circle"></span> #500 Error</a></li>
-				</ul>
-				<ul class="nav nav-sidebar">
-					<li><a href="/index/state/type/delay"><span class="glyphicon glyphicon-pause"></span> Content delay</a></li>
-					<li><a href="/index/state/type/cookies"><span class="glyphicon glyphicon-pause"></span> Check Cookie</a></li>
-					<li><a href="/index/state/type/hosts_and_zones"><span class="glyphicon glyphicon-filter"></span> Hosts &amp; Zones</a></li>
-				</ul>
-				<ul class="nav nav-sidebar">
-					<li><a href="/index/state/type/chrome"><span class="glyphicon glyphicon-globe"></span> Chrome</a></li>
-					<li><a href="/index/state/type/glimpse"><span class="glyphicon glyphicon-user"></span> Glimpse</a></li>
-				</ul>
-				<ul class="nav nav-sidebar">
-					<li><a href="/index/state/type/default"><span class="glyphicon glyphicon-flash"></span> Reset Site</a></li>
-				</ul>
 
-				<ul class="nav nav-sidebar">
-					<li><a href="/pull"><span class="glyphicon glyphicon-cloud-download"></span> Pull API</a></li>
-				</ul>
-				<ul class="nav nav-sidebar">
-					<li><a href="/benchmark"><span class="glyphicon glyphicon-cloud-download"></span> Benchmark</a></li>
-				</ul>
-			</div>
-			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<div class="panel panel-info">
-					<div class="panel-heading">
-						<h3 class="panel-title">Test URL</h3>
+			<?php foreach($this->menu as $key => $value) : ?>
+
+				<div class="col-md-2 col-sm-2 col-lg-2">
+					<a href="/index/state/type/<?php echo $key ?>">
+					<div class="thumbnail <?php if ($this->state == $key) echo 'active'?>">
+						<div class="text-center">
+							<span style="font-size: 3em;" class="glyphicon glyphicon-<?php echo $value[0] ?>"></span>
+						</div>
+						<div class="caption">
+							<h5 class="text-center"><?php echo $value[1] ?></h5>
+						</div>
 					</div>
-					<div class="panel-body">
-						<p>
-							<a href="/site/view/owner/<?php echo $this->user ?>" target="_blank"><?php echo $this->serverUrl() ?>/site/view/owner/<?php echo $this->user ?></a>
-						</p>
-					</div>
+				</a>
 				</div>
-                <?php echo $this->layout()->content?>
-        </div>
+
+				<?php endforeach; ?>
+
 		</div>
-	</div>
-	-->
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-			<h3 class="panel-title">You test URL</h3>
-		</div>
-		<div class="panel-body">
-			<h5>
-				<a href="/site/view/owner/<?php echo $this->user ?>" target="_blank"><?php echo $this->serverUrl() ?>/site/view/owner/<?php echo $this->user ?></a>
-			</h5>
-		</div>
-	</div>
-	<div class="row">
-	<?php foreach($this->menu as $key => $value) : ?>
-	<div class="col-md-2 col-sm-2 col-lg-2">
-		<a href="/index/state/type/<?php echo $key ?>">
-			<div class="thumbnail <?php if ($this->state == $key) echo 'active'?>">
-				<div class="text-center">
-				<span style="font-size: 3em;" class="glyphicon glyphicon-<?php echo $value[0] ?>"></span>
-			</div>
-				<div class="caption">
-					<h5 class="text-center"><?php echo $value[1] ?></h5>
-				</div>
-			</div>
-		</a>
-	</div>
-	<?php endforeach; ?>
-</div>
-	<?php echo $this->layout()->content?>
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form method="POST" action="/settings/save" role="form" id="settings">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-						</button>
-						<h4 class="modal-title" id="myModalLabel">Pull API Settings</h4>
-					</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<label for="key">Key</label>
-							<input type="password" class="form-control" name="key" placeholder="Key">
-						</div>
-						<div class="form-group">
-							<label for="secret">Secret</label>
-							<input type="password" class="form-control" name="secret" placeholder="Secret">
-						</div>
-						<div class="form-group">
-							<label for="secret">Favorite Chart ID</label>
-							<input type="text" class="form-control" name="chart_id" placeholder="<?php echo $this->chartId ?>" value="<?php echo $this->chartId ?>">
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary" id="submit">Save changes</button>
-						<input type="hidden" name="returnUrl" value="<?php echo Zend_Controller_Front::getInstance()->getRequest()->getRequestUri();?>">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="/js/jquery.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script>
-    $(function() {
-        $("button#submit").click(function(){
-            $.ajax({
-                type: "POST",
-                url: "http://scc.local/settings/save",
-                data: $("form#settings").serialize()
-            });
-        });
-    });
-	</script>
+		<hr />
+		<?php echo $this->layout()->content ?>
+
+		<?php echo $this->render('_modal.phtml') ?>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+				<script src="/js/jquery.min.js"></script>
+				<script src="/js/bootstrap.min.js"></script>
+				<script>
+					$(function() {
+						$("button#submit").click(function() {
+							$.ajax({
+								type: "POST",
+								url: "http://scc.local/settings/save",
+								data: $("form#settings").serialize()
+							});
+						});
+					});
+				</script>
 </body>
+
 </html>
