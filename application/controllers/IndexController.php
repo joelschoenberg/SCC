@@ -25,8 +25,8 @@ class IndexController extends Zend_Controller_Action
         $this->view->user = $result->user;
         $this->_state = $result->state;
         $this->view->state = $result->state;
-        $this->view->key = (empty($result->key)) ? '' : '.....';
-        $this->view->secret = (empty($result->secret)) ? '' : '..................';
+        $this->view->key = (empty($result->key)) ? '' : base64_decode($result->key);
+        $this->view->secret = (empty($result->secret)) ? '' : base64_decode($result->secret);
         $this->view->chartId = (empty($result->chart_id)) ? '' : $result->chart_id;
 
         $siteOptions = array(
