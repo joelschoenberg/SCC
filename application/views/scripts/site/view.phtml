@@ -40,12 +40,20 @@ function RProfiler(){} (function(){var restUrl ="cpqa.catchpoint.com/jp/v2/M"; v
 <link href="/css/scc.css" rel="stylesheet" />
 </head>
 <body>
-	<div class="container">
-		<div class="jumbotron">
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="/"><img class="img-responsive" src="/images/cp_white.png"
+					alt="Home"></a>
+			</div>
+		</div>
+	</div>
+		<div class="jumbotron jcolor">
 			<div class="container">
-		  	<h1>Test Conditiion</h1>
+		  	<h1>SCC Test Condition</h1>
 		  </div>
 		</div>
+  <div class="container">
 		<?php echo $this->render('site/' . $this->state . '.phtml'); ?>
 	</div>
 	<div class="footer">
