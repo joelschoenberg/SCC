@@ -74,7 +74,7 @@ body > .container {
 	width: 100px;
 	height: 100px;
 	position: fixed;
-	top: 40%;
+	top: 500px;
 	left: 50%;
 	background: url(../images/ajax-loader.gif) no-repeat center #fff;
 	z-index: 999;
