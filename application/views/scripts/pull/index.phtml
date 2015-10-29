@@ -31,9 +31,10 @@ $(document).ready(function(){
         $("#loading").show();
         e.preventDefault();
         call = $("#call").val();
+        console.log(call);
         $.ajax({
             type: "POST",
-            url: "/pull/api/call/" + call,
+            url: "/pull/api?call=" + call,
             success: function(data){
                 $("pre").show();
                 $("#loading").hide();
