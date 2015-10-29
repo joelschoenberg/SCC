@@ -1,3 +1,12 @@
+
+<div class="jumbotron jcolor">
+  <div class="container">
+    <h1>Pull API Test</h1>
+    <p>Enter API call into the field below and click submit</p>
+  </div>
+</div>
+
+<div class="container theme-showcase" role="main">
 <form class="form-horizontal" method="POST" id="apiForm">
   <div class="form-group">
       <label for="url" class="col-md-3 control-label">https://io.catchpoint.com/ui/api/v1/</label>
@@ -12,6 +21,7 @@
 <hr />
 <pre id="apiResult"></pre>
 <div id="loading"></div>
+</div>
 <script>
 $(document).ready(function(){
     $("pre").hide();
