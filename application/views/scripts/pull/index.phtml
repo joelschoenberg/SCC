@@ -39,37 +39,25 @@
 </form>
 <hr />
 <pre id="apiResult"></pre>
-<div id="loading"></div>
 </div>
 <script>
 $(document).ready(function(){
-      $("pre").hide();
-      $("#loading").hide();
+      $("#apiResult").hide();
       $("#apiForm").submit(function(e){
-        $("pre").hide();
-        $("#loading").show();
+        $("#apiResult").hide();
         $("#darkLayer").show();
         e.preventDefault();
         call = $("#call").val();
-        method= $("#method").val();
-        postData = $("#postData").val();
-        console.log(method);
-        console.log(call);
-        console.log(postData);
         $.ajax({
             type: "GET",
             url: "/pull/api?call=" + call,
             success: function(data){
-                $("pre").show();
-                $("#loading").hide();
                 $("#darkLayer").hide();
-                $("#apiResult").html(data);
+                $("#apiResult").show().html(data);
             },
             error: function (request, status, error) {
-                $("pre").show();
-                $("pre").html(error);
+                $("#apiResult").show().html(error);
                 $("#darkLayer").hide();
-                $("#loading").hide();
             }
         })
     })
