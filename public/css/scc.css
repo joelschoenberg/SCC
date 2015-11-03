@@ -70,13 +70,17 @@ body > .container {
   padding-left: 15px;
 }
 
-#loading {
-	width: 100px;
+#loading:before {
+	width: 150px;
 	height: 100px;
 	position: fixed;
 	top: 500px;
-	left: 50%;
-	background: url(../images/ajax-loader.gif) no-repeat center #fff;
+	left: 45%;
+  font-size: 2em;
+  text-align: center;
+  content: "Loading ...";
+  color: #fff;
+	/*background: url(../images/ajax-loader.gif) no-repeat center;*/
 	z-index: 999;
 }
 
@@ -87,4 +91,20 @@ body {
 .jcolor {
     background-color: #0c6cb3 !important;
     color: #fff;
+}
+
+.darkClass
+{
+    background-color: black;
+    filter:alpha(opacity=50); /* IE */
+    opacity: 0.5; /* Safari, Opera */
+    -moz-opacity:0.50; /* FireFox */
+    z-index: 20;
+    height: 100%;
+    width: 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+    position:absolute;
+    top: 0px;
+    left: 0px;
 }

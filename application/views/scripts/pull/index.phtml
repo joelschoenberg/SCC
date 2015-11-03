@@ -1,4 +1,4 @@
-
+<div id="darkLayer" class="darkClass" style="display:none"></div>
 <div class="jumbotron jcolor">
   <div class="container">
     <h1>Pull API Test</h1>
@@ -9,11 +9,30 @@
 <div class="container">
 <form class="form-horizontal" method="POST" id="apiForm">
   <div class="form-group">
-      <label for="url" class="col-md-3 control-label">https://io.catchpoint.com/ui/api/v1/</label>
-      <div class="col-md-7">
+      <label for="url" class="col-sm-3 control-label">https://io.catchpoint.com/ui/api/v1/</label>
+      <div class="col-sm-9">
           <input type="text" class="form-control" id="call" name="call" placeholder="API Call">
       </div>
-      <div class="col-md-2">
+  </div>
+  <!--
+  <div class="form-group">
+      <label for="method" class="col-sm-3 control-label">Method</label>
+      <div class="col-sm-1">
+        <select class="form-control" id="method">
+          <option selected="selected">GET</option>
+          <option>POST</option>
+        </select>
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="postData" class="col-sm-3 control-label">Request</label>
+    <div class="col-sm-9">
+      <textarea class="form-control" rows="3" id="postData"></textarea>
+    </div>
+  </div>
+-->
+  <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
           <button type="submit" id="submit" class="btn btn-primary">Submit</button>
       </div>
   </div>
@@ -24,24 +43,33 @@
 </div>
 <script>
 $(document).ready(function(){
-    $("pre").hide();
-    $("#loading").hide();
-    $("#apiForm").submit(function(e){
+      $("pre").hide();
+      $("#loading").hide();
+      $("#apiForm").submit(function(e){
         $("pre").hide();
         $("#loading").show();
+        $("#darkLayer").show();
         e.preventDefault();
         call = $("#call").val();
+        method= $("#method").val();
+        postData = $("#postData").val();
+        console.log(method);
         console.log(call);
+        console.log(postData);
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: "/pull/api?call=" + call,
             success: function(data){
                 $("pre").show();
                 $("#loading").hide();
+                $("#darkLayer").hide();
                 $("#apiResult").html(data);
             },
             error: function (request, status, error) {
+                $("pre").show();
                 $("pre").html(error);
+                $("#darkLayer").hide();
+                $("#loading").hide();
             }
         })
     })
