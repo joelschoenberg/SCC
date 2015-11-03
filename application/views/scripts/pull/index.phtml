@@ -39,11 +39,13 @@
 </form>
 <hr />
 <pre id="apiResult"></pre>
+<div id="loading"></pre>
 </div>
 <script>
 $(document).ready(function(){
       $("#apiResult").hide();
       $("#apiForm").submit(function(e){
+        $("#loading").show();
         $("#apiResult").hide();
         $("#darkLayer").show();
         e.preventDefault();
@@ -52,12 +54,14 @@ $(document).ready(function(){
             type: "GET",
             url: "/pull/api?call=" + call,
             success: function(data){
+                $("#loading").hide();
                 $("#darkLayer").hide();
                 $("#apiResult").show().html(data);
             },
             error: function (request, status, error) {
                 $("#apiResult").show().html(error);
                 $("#darkLayer").hide();
+                $("#loading").hide();
             }
         })
     })

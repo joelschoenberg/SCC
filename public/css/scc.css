@@ -80,7 +80,6 @@ body > .container {
   text-align: center;
   content: "Loading ...";
   color: #fff;
-	/*background: url(../images/ajax-loader.gif) no-repeat center;*/
 	z-index: 999;
 }
 
@@ -93,8 +92,7 @@ body {
     color: #fff;
 }
 
-.darkClass
-{
+.darkClass {
     background-color: black;
     filter:alpha(opacity=50); /* IE */
     opacity: 0.5; /* Safari, Opera */
