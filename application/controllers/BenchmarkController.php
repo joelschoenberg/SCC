@@ -41,11 +41,11 @@ class BenchmarkController extends Zend_Controller_Action
         $result = $site->fetchAll($user);
 
         if (!$result['chart_id'] | $result['chart_id'] == null) {
-          throw new Exception('No Favorite Chart ID found. Please go to settings and enter one.');
+            throw new Exception('No Favorite Chart ID found. Please go to settings and enter one.');
         }
 
-        $this->view->key     = $result['key'];
-        $this->view->secret  = $result['secret'];
+        $this->view->key = $result['key'];
+        $this->view->secret = $result['secret'];
         $this->view->chartId = $result['chart_id'];
     }
 
@@ -99,7 +99,7 @@ class BenchmarkController extends Zend_Controller_Action
                 array(
                         'cid' => $this->_getParam('id'),
                         'name' => $this->_getParam('name'),
-                        'modified' => date('Y-m-d H:i:s')
+                        'modified' => date('Y-m-d H:i:s'),
                 ));
 
         $mapper = new Application_Model_BenchmarkChartsMapper();
@@ -112,7 +112,7 @@ class BenchmarkController extends Zend_Controller_Action
     public function testAction()
     {
         if (!$this->_getParam('testid')) {
-          throw new Exception('No Test ID found!');
+            throw new Exception('No Test ID found!');
         }
 
         $site = new Application_Model_SiteMapper();
@@ -124,7 +124,7 @@ class BenchmarkController extends Zend_Controller_Action
         $t->key = $result['key'];
         $t->secret = $result['secret'];
 
-        $myArray[] = $t->fetchData('performance/favoriteCharts/'.$result['chart_id'].'/data?tests=' . $this->_getParam('testid'));
+        $myArray[] = $t->fetchData('performance/favoriteCharts/'.$result['chart_id'].'/data?tests='.$this->_getParam('testid'));
 
         $tests = array();
 
@@ -147,7 +147,7 @@ class BenchmarkController extends Zend_Controller_Action
         $this->session->userDetails = array(
           $this->_getParam('name'),
           $this->_getParam('job_title'),
-          $this->_getParam('contact_number')
+          $this->_getParam('contact_number'),
         );
 
         $this->view->testDetails = $tests[0];
@@ -216,28 +216,28 @@ class BenchmarkController extends Zend_Controller_Action
         $result = $charts->fetchAll();
 
         foreach ($result as $r) {
-          $myArray[] = $t->fetchData('performance/favoriteCharts/'.$r->cid.'/data');
+            $myArray[] = $t->fetchData('performance/favoriteCharts/'.$r->cid.'/data');
 
-          $chart = new Application_Model_BenchmarkCharts(
+            $chart = new Application_Model_BenchmarkCharts(
                   array(
                       'id' => $r->id,
                       'cid' => $r->cid,
                       'name' => $r->name,
-                      'modified' => date('Y-m-d H:i:s')
+                      'modified' => date('Y-m-d H:i:s'),
                   ));
 
-          $mapper = new Application_Model_BenchmarkChartsMapper();
+            $mapper = new Application_Model_BenchmarkChartsMapper();
 
-          $mapper->save($chart);
+            $mapper->save($chart);
 
-          sleep(2);
+            sleep(2);
         }
 
         $tests = array();
 
         foreach ($myArray as $m) {
             foreach ($m->summary->items as $a) {
-              $tests[] = array(
+                $tests[] = array(
               'id' => $chart->cid,
               'name' => $a->breakdown_1->name,
               'dns' => round($a->synthetic_metrics[0] / 1000, 3),

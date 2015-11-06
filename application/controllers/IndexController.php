@@ -41,7 +41,7 @@ class IndexController extends Zend_Controller_Action
                 'cookies' => array('globe', 'Cookies'),
                 'hosts_and_zones' => array('filter', 'Hosts &amp; Zones'),
                 'chrome' => array('chrome', 'Chrome'),
-                'glimpse' => array('users', 'Glimpse')
+                'glimpse' => array('users', 'Glimpse'),
         );
 
         $this->view->menu = $siteOptions;
@@ -86,6 +86,5 @@ class IndexController extends Zend_Controller_Action
         $mapper->save($site);
 
         $this->_helper->redirector('index', 'index');
-
     }
 }

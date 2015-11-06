@@ -230,7 +230,7 @@
     <tr>
       <td class="col-md-4">
         <p>Name</p>
-        <h2><?php echo $this->uname ?></h2>
+        <h2><?php echo substr($this->uname, 0, 40) ?></h2>
       </td>
     <td class="col-md-4">
       <p>Webpage Response</p>
@@ -334,41 +334,12 @@ $(function () {
         visible: true,
         type: "linear",
         tickAmount: 1,
-        /*
-        tickPositioner: function (min, max) {
-                console.log(this.tickInterval);
-                var ticks = this.getLinearTickPositions(this.tickInterval, min, max);
-                console.log(ticks);
-                return ticks;
-        }*/
         tickPositioner: function (min, max) {
                 //var ticks = this.getLinearTickPositions(this.tickInterval, min, max);
                 //console.log(ticks);
                 var positions = [min.toFixed(1), max.toFixed(1)];
                 return positions;
         }
-
-        /*
-        tickPositioner: function(min, max) {
-               // specify an interval for ticks or use max and min to get the interval
-               var interval = Math.round((max-min)/5);
-               // push the min value at beginning of array
-               var dataMin=this.dataMin;
-               var dataMax=this.dataMax;
-               var positions = [dataMin];
-               var defaultPositions = this.getLinearTickPositions(interval, dataMin, max);
-               //push all other values that fall between min and max
-               for (var i = 0; i < defaultPositions.length; i++) {
-                  if (defaultPositions[i] > dataMin && defaultPositions[i] < dataMax) {
-                     positions.push(defaultPositions[i]);
-                  }
-               }
-               // push the max value at the end of the array
-               positions.push(dataMax);
-               return positions;
-            },
-            */
-            //changed min valuereversed: true
       },
       plotOptions: {
           scatter: {
@@ -395,7 +366,6 @@ $(function () {
         },
         series: [{
             name: 'Other Top Sites',
-            //color: 'rgba(174, 192, 216, 0.5)',
             color: 'rgba(119, 152, 191, .5)',
             data: <?php echo $this->dns ?>
         }, {
