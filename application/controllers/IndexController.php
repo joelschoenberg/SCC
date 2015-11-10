@@ -22,6 +22,9 @@ class IndexController extends Zend_Controller_Action
         $site = new Application_Model_SiteMapper();
 
         $result = $site->fetchAll($this->_user);
+        if (!$result) {
+          throw new Exception('User not found!');
+        }
         $this->view->user = $result->user;
         $this->_state = $result->state;
         $this->view->state = $result->state;
