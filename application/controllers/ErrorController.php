@@ -4,7 +4,7 @@ class ErrorController extends Zend_Controller_Action
 {
     public function errorAction()
     {
-        //$this->_helper->layout->setLayout('basic');
+        $this->_helper->layout->setLayout('error');
 
         $errors = $this->_getParam('error_handler');
 

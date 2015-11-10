@@ -37,6 +37,10 @@ class SiteController extends Zend_Controller_Action
 
         $result = $site->fetchAll($user);
 
+        if(!$result) {
+          throw new Exception('User not found!');
+        }
+
         $this->view->user  = $result['user'];
         $this->view->state = $result['state'];
     }
