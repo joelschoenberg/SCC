@@ -8,17 +8,13 @@ class SettingsController extends Zend_Controller_Action
 
     protected $_secret;
 
-    public function preDispatch()
+    public function init()
     {
         if (!Zend_Auth::getInstance()->hasIdentity()) {
             // If the user is logged in, we don't want to show the login form;
-            // however, the logout action should still be available
-            $this->_helper->redirector('index', 'login');
+          // however, the logout action should still be available
+          $this->_helper->redirector('index', 'login');
         }
-    }
-
-    public function init()
-    {
         $this->_user = Zend_Auth::getInstance()->getIdentity();
         $this->view->user = $this->_user;
 
@@ -32,6 +28,10 @@ class SettingsController extends Zend_Controller_Action
         $this->_helper->viewRenderer->setNoRender(true);
     }
 
+    public function preDispatch()
+    {
+    }
+    
     public function indexAction()
     {
     }
@@ -46,7 +46,6 @@ class SettingsController extends Zend_Controller_Action
                     'user' => $this->_user,
                     'key' => $key,
                     'secret' => $secret,
-                    'chartId' => $this->_getParam('chart_id'),
                 ));
 
         $mapper = new Application_Model_SiteMapper();
