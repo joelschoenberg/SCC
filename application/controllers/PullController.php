@@ -12,15 +12,15 @@ class PullController extends Zend_Controller_Action
 
     public function preDispatch()
     {
-        if (!Zend_Auth::getInstance()->hasIdentity()) {
-            // If the user is logged in, we don't want to show the login form;
-            // however, the logout action should still be available
-            $this->_helper->redirector('index', 'login');
-        }
     }
 
     public function init()
     {
+      if (!Zend_Auth::getInstance()->hasIdentity()) {
+          // If the user is logged in, we don't want to show the login form;
+          // however, the logout action should still be available
+          $this->_helper->redirector('index', 'login');
+      }
         $this->_helper->layout->setLayout('basic');
 
         $this->_session = new Zend_Session_Namespace('Catchpoint');

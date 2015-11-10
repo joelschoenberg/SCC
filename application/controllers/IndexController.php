@@ -6,25 +6,20 @@ class IndexController extends Zend_Controller_Action
 
     protected $_state;
 
-    public function preDispatch()
+    public function init()
     {
         if (!Zend_Auth::getInstance()->hasIdentity()) {
             // If the user is logged in, we don't want to show the login form;
-            // however, the logout action should still be available
-            $this->_helper->redirector('index', 'login');
+          // however, the logout action should still be available
+          $this->_helper->redirector('index', 'login');
         }
-    }
 
-    public function init()
-    {
         $this->_user = Zend_Auth::getInstance()->getIdentity();
 
         $site = new Application_Model_SiteMapper();
 
         $result = $site->fetchAll($this->_user);
-        if (!$result) {
-          throw new Exception('User not found!');
-        }
+
         $this->view->user = $result->user;
         $this->_state = $result->state;
         $this->view->state = $result->state;
@@ -50,6 +45,16 @@ class IndexController extends Zend_Controller_Action
         $this->view->menu = $siteOptions;
     }
 
+    public function preDispatch()
+    {
+    }
+
+    public function indexAction()
+    {
+        $this->_helper->viewRenderer->setNoRender(true);
+        $this->renderScript('site/'.$this->_state.'.phtml');
+    }
+
     public function setAction()
     {
         $this->state = $this->_getParam('state');
@@ -66,12 +71,6 @@ class IndexController extends Zend_Controller_Action
         $mapper = new Application_Model_SiteMapper();
 
         $mapper->save($site);
-    }
-
-    public function indexAction()
-    {
-        $this->_helper->viewRenderer->setNoRender(true);
-        $this->renderScript('site/'.$this->_state.'.phtml');
     }
 
     public function stateAction()
