@@ -50,9 +50,10 @@ $(document).ready(function(){
         $("#darkLayer").show();
         e.preventDefault();
         call = $("#call").val();
+        url = encodeURIComponent(call);
         $.ajax({
             type: "GET",
-            url: "/pull/api?call=" + call,
+            url: "/pull/api?call=" + url,
             success: function(data){
                 $("#loading").hide();
                 $("#darkLayer").hide();

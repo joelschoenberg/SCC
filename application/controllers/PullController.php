@@ -52,8 +52,7 @@ class PullController extends Zend_Controller_Action
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
 
-        $request = htmlspecialchars($this->_getParam('call'));
-
+        $request = $this->_getParam('call');
         $t = new Catchpoint_Pull();
         $t->override = true;
         $t->key = $this->_key;
