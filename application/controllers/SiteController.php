@@ -32,7 +32,11 @@ class SiteController extends Zend_Controller_Action
         } else {
             $user = $this->_getParam('owner');
         }
-
+        if ($this->_getParam('timeout')) {
+          $this->view->timeout = $this->_getParam('timeout');
+        } else {
+          $this->view->timeout = 0;
+        }
         $site = new Application_Model_SiteMapper();
 
         $result = $site->fetchAll($user);
