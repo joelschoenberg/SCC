@@ -1,11 +1,14 @@
-<?php sleep($this->timeout) ?>
+<?php
+$timeout = $this->timeout ?: 1;
+sleep($timeout);
+?>
 <div class="panel panel-danger">
 	<div class="panel-heading">
 		<h3 class="panel-title">Default</h3>
 	</div>
 	<div class="panel-body">
 		<p>The test is looking for this phrase: Hello, World! but this page
-			has a 'sleep' step for <strong><?php echo $this->timeout  ? echo $this->timeout : 1 ?> seconds</strong> which will cause the script to
+			has a 'sleep' step for <strong><?php echo $timeout ?> seconds</strong> which will cause the script to
 			timeout.</p>
 		<p>To add your own custom timeout, append the URL with <code>?timeout=XX</code>, where XX is
 			the total number of seconds. The default is 1 second.</p>
