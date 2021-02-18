@@ -39,7 +39,6 @@ class IndexController extends Zend_Controller_Action
                 'cookies' => array('globe', 'Cookies'),
                 'hosts_and_zones' => array('filter', 'Hosts &amp; Zones'),
                 'chrome' => array('chrome', 'Chrome'),
-                'glimpse' => array('users', 'Glimpse'),
                 'http_1' => array('chrome', 'HTTP/1.1'),
                 'http_2' => array('chrome', 'HTTP/2'),
         );
